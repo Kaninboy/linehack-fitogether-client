@@ -8,7 +8,7 @@ on:
 
 env:
   IMAGE_NAME: ghcr.io/fitogether-me/client
-  COMPOSE_FILE_LOCATION: /app/docker-compose.client.yml
+  COMPOSE_FILE_LOCATION: /app/docker-compose.client.yaml
 
 jobs:
   build:
