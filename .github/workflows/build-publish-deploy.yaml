@@ -8,6 +8,7 @@ on:
 
 env:
   IMAGE_NAME: ghcr.io/fitogether-me/client
+  COMPOSE_FILE_LOCATION: /app/docker-compose.client.yml
 
 jobs:
   build:
@@ -38,3 +39,21 @@ jobs:
           tags: ${{ env.IMAGE_NAME }}:latest
           cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
           cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache,mode=max
+  deploy:
+    name: Deploy to VM
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to VM
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            docker pull ${{ env.IMAGE_NAME }}:latest
+            docker-compose up -f ${{ env.COMPOSE_FILE_LOCATION }} -d 
+            if [[ "$(docker images --filter "dangling=true" -q)" == "" ]]; 
+              then echo "No image with <none> tag";
+              else docker rmi $(docker images --filter "dangling=true" -q);
+            fi
