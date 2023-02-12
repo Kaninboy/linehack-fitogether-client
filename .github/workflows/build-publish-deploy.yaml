@@ -53,4 +53,4 @@ jobs:
           script: |
             docker pull ${{ env.IMAGE_NAME }}:latest
             docker-compose up -f ${{ env.COMPOSE_FILE_LOCATION }} -d 
-            docker image prune
+            docker image prune -f
