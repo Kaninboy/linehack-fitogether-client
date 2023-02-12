@@ -52,5 +52,5 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             docker pull ${{ env.IMAGE_NAME }}:latest
-            docker compose up -f ${{ env.COMPOSE_FILE_LOCATION }} -d 
+            docker compose -f ${{ env.COMPOSE_FILE_LOCATION }} up -d 
             docker image prune -f
