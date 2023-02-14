@@ -1,34 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import { CheckIn } from "./Checkin";
+import liff from "@line/liff";
+import { useEffect } from "react";
+import React from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+export interface User {
+  userId: string;
+  displayName: string;
+  pictureUrl: string;
 }
 
-export default App
+const UserContext = React.createContext<{
+  isReady: boolean;
+  user: User | null;
+}>({ isReady: false, user: null });
+interface UserContextProps {
+  children: React.ReactNode;
+}
+function UserContextProvider(props: UserContextProps) {
+  const { children } = props;
+  const [isReady, setIsReady] = React.useState(false);
+  const [user, setUser] = React.useState<User | null>(null);
+  useEffect(() => {
+    async function init() {
+      await liff.init({
+        liffId: "1657898837-o0mD9EkV",
+      });
+      if (!liff.isLoggedIn()) liff.login();
+      setUser((await liff.getProfile()) as User);
+      setIsReady(true);
+    }
+    init();
+  }, []);
+
+  if (!isReady) return <div>Loading...</div>;
+  return (
+    <UserContext.Provider value={{ isReady, user }}>
+      {children}
+    </UserContext.Provider>
+  );
+}
+export const useUser = () => React.useContext(UserContext);
+
+function App() {
+  return (
+    <UserContextProvider>
+      <Routes>
+        <Route path="/checkin" element={<CheckIn />} />
+        <Route path="*" element={<h1>Not Found</h1>} />
+      </Routes>
+    </UserContextProvider>
+  );
+}
+
+export default App;
