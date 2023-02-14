@@ -72,7 +72,7 @@ export function CheckIn() {
       );
       liff.closeWindow();
     };
-    if (stage === 3) checkIn();
+    if (stage === 2) checkIn();
   }, [stage]);
 
   return (
