@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useUser } from "./App";
+
 import liff from "@line/liff";
 import axios from "axios";
+import { useUser } from "../../providers/UserProvider";
 
 const LOCATIONS = ["สถานที่ 1", "สถานที่ 2", "สถานที่ 3"];
 
@@ -53,7 +54,7 @@ export function SaveAndShare(props: SaveAndShareProps) {
 }
 
 export function CheckIn() {
-  const { user } = useUser();
+  const { profile } = useUser();
   const [stage, setStage] = useState(0);
   const [location, setLocation] = useState("");
 
@@ -77,7 +78,7 @@ export function CheckIn() {
 
   return (
     <div>
-      <p>Hi {user?.displayName}</p>
+      <p>Hi {profile?.displayName}</p>
       {stage === 0 && (
         <SelectLocation
           location={location}
