@@ -1,5 +1,7 @@
 import liff from "@line/liff";
 import React, { useContext, useEffect, useState } from "react";
+import Lottie from "react-lottie";
+import animationData from "../assets/69209-olympics.json";
 
 export interface Profile {
   userId: string;
@@ -40,7 +42,21 @@ export const UserProvider = (props: UserProviderProps) => {
     init();
   }, []);
 
-  if (!isReady) return <div>Loading...</div>;
+  if (!isReady)
+    return (
+      <div className="w-screen h-screen flex -mt-[16px] flex-col justify-center items-center">
+        <Lottie
+          options={{
+            loop: true,
+            autoplay: true,
+            animationData,
+          }}
+          height={210}
+          width={220}
+        />
+        กำลังโหลด...
+      </div>
+    );
   return (
     <UserContext.Provider value={{ isReady, profile }}>
       {children}

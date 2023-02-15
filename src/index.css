@@ -19,3 +19,7 @@
   font-weight: 700;
   src: url("/fonts/LINESeedSansTH_W_Bd.woff2") format("woff2");
 }
+
+* {
+  font-family: "LINE", sans-serif;
+}
