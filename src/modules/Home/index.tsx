@@ -8,7 +8,7 @@ export function Home() {
         </ul>
         <ul>
             <li>การเผาผลาญเมื่อทำกิจกรรม TDEE</li>
-            <li>kcal/day</li>
+            <li><input type="text" /> kcal/day</li>
         </ul>
 
         </main>
