@@ -1,6 +1,6 @@
 import liff from "@line/liff";
 import { Link } from "@mui/material";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { api } from "../../common/api";
 import { useUser } from "../../providers/UserProvider";
@@ -22,8 +22,12 @@ export function CheckIn() {
     type: LocationType.UNKNOWN,
   });
   const [willShare, setWillShare] = useState(searchParams.has("share"));
+  const submitted = useRef(false);
 
   const handleSubmit = async () => {
+    if (submitted.current) return;
+    submitted.current = true;
+
     await api.post("/engage/checkin", {
       location,
       willShare,
@@ -32,7 +36,7 @@ export function CheckIn() {
   };
 
   return (
-    <div className="p-2 flex flex-col h-screen justify-between">
+    <div className="p-2 flex flex-col min-h-screen justify-between">
       <div className="flex justify-between">
         <h1 className="text-lg">
           <span className="font-bold">สวัสดี {profile?.displayName} </span>
