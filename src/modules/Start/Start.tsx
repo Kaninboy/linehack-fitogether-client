@@ -1,49 +1,62 @@
-import { Button } from "@mui/material";
+import { Button, InputAdornment, TextField } from "@mui/material";
+import GenderSelect from "./GenderSelect";
+import ActivitiesSelect from "./ActivitiesSelect";
 
 export function Start() {
+
   return (
-    <>
-      <Button variant="contained">Click</Button>
-      <div>
-        <h1 className="text-center">ข้อมูลส่วนบุคคล</h1>
-        <ul className="flex justify-center">
+    <div>
+        <h1 className="text-center font-line text-2xl m-10 font-extrabold">
+          กรุณากรอกข้อมูลส่วนตัว
+        </h1>
+        <ul className="flex justify-evenly m-10">
           <li>
-            เพศ{" "}
-            <select name="gender" id="gender">
-              <option value="male">ชาย</option>
-              <option value="female">หญิง</option>
-            </select>
+            <GenderSelect />
           </li>
           <li>
-            อายุ <input type="number" name="age" id="age" /> ปี
-          </li>
-        </ul>
-        <ul className="flex justify-center">
-          <li>
-            น้ำหนัก <input type="number" name="weight" id="weight" /> กก.
-          </li>
-          <li>
-            ส่วนสูง <input type="number" name="height" id="height" /> ซม.
+            <TextField
+              id="age"
+              label="อายุ"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">ปี</InputAdornment>
+                ),
+              }}
+              variant="outlined"
+            />
           </li>
         </ul>
-        <p>
-          กิจกรรมระหว่างวัน
-          <select name="activities" id="activities">
-            <option value="นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย">
-              นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย
-            </option>
-            <option value="ออกกำลังกายเบาๆ (1-2 ครั้งต่อสัปดาห์)">
-              ออกกำลังกายเบาๆ (1-2 ครั้งต่อสัปดาห์)
-            </option>
-            <option value="ออกกำลังกายปานกลาง (3-5 ครั้งต่อสัปดาห์)">
-              ออกกำลังกายปานกลาง (3-5 ครั้งต่อสัปดาห์)
-            </option>
-            <option value="ออกกำลังกายหนักมาก (ทุกวัน วันละ 2 เวลา)">
-              ออกกำลังกายหนักมาก (ทุกวัน วันละ 2 เวลา)
-            </option>
-          </select>
-        </p>
-      </div>
-    </>
+        <ul className="flex justify-evenly m-10">
+          <li>
+            <TextField
+              id="weight"
+              label="น้ำหนัก"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">กก.</InputAdornment>
+                ),
+              }}
+              variant="outlined"
+            />
+          </li>
+          <li>
+            <TextField
+              id="height"
+              label="ส่วนสูง"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">ซม.</InputAdornment>
+                ),
+              }}
+              variant="outlined"
+            />
+          </li>
+        </ul>
+        <ActivitiesSelect />
+        <div className="m-10 text-center">
+          <Button variant="contained">Enter</Button>
+        </div>
+    </div>
   );
 }
+

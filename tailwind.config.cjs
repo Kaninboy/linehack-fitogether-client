@@ -10,6 +10,9 @@ module.exports = {
         greyLight: "#F4F4F4",
         muiBlue: "#1976d2",
       },
+      fontFamily: {
+        line : ["LINE", "Roboto", "Helvetica", "Arial", "sans-serif"]
+      }
     },
   },
   plugins: [],
