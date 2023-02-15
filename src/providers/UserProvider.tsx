@@ -37,7 +37,8 @@ export const UserProvider = (props: UserProviderProps) => {
 
       setIsReady(true);
     }
-    init();
+    // init();
+    setIsReady(true);
   }, []);
 
   if (!isReady) return <div>Loading...</div>;
