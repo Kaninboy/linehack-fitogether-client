@@ -2,7 +2,7 @@ import liff from "@line/liff";
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: "https://fitogether.me/api",
 });
 
 api.interceptors.request.use((config) => {
