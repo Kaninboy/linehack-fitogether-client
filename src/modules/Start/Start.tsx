@@ -1,6 +1,6 @@
 import { Button, InputAdornment, TextField } from "@mui/material";
-import GenderSelect from "./GenderSelect";
-import ActivitiesSelect from "./ActivitiesSelect";
+import GenderSelect from "./components/GenderSelect";
+import ActivitiesSelect from "./components/ActivitiesSelect";
 
 export function Start() {
 

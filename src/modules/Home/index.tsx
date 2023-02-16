@@ -1,6 +1,6 @@
 export function Home() {
     return (
-        <main>
+        <div className="bg-blueLight">
         <h1 className="font-bold">ใน 1 วันคุณเผาผลาญพลังงาน</h1>
         <ul>
             <li>การเผาผลาญขั้นต่ำ BMR</li>
@@ -11,7 +11,7 @@ export function Home() {
             <li><input type="text" /> kcal/day</li>
         </ul>
 
-        </main>
+        </div>
     );
     
 }
