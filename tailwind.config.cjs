@@ -9,6 +9,7 @@ module.exports = {
         greyMain: "#A6A6A6",
         greyLight: "#F4F4F4",
         muiBlue: "#1976d2",
+        lineGreen: "#06C755"
       },
       fontFamily: {
         line : ["LINE", "Roboto", "Helvetica", "Arial", "sans-serif"]

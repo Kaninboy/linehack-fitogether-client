@@ -5,6 +5,8 @@ import { CheckIn } from "./modules/CheckIn";
 import { UserProvider } from "./providers/UserProvider";
 import { Home } from "./modules/Home";
 import { Start } from "./modules/Start/Start";
+import CardDisplay from "./modules/Home/CardDisplay";
+import TimePickerPage from "./modules/Start/SetNoti";
 
 function App() {
   return (
@@ -13,7 +15,10 @@ function App() {
         <Routes>
           <Route path="/checkin" element={<CheckIn />} />
           <Route path="/start" element={<Start/>}/>
+          <Route path="/card" element={<CardDisplay/>}/>
+          <Route path="/setNoti" element={<TimePickerPage/>}/>
           <Route path="*" element={<Home />} />
+          
         </Routes>
       </UserProvider>
     </ThemeProvider>

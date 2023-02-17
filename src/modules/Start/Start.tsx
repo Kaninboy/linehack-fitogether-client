@@ -14,6 +14,7 @@ import { api } from "../../common/api";
 import { useNavigate } from "react-router-dom";
 
 export function Start() {
+  let id = "01234";
   const [age, setAge] = React.useState("");
   const [weight, setWeight] = React.useState("");
   const [height, setHeight] = React.useState("");
@@ -27,18 +28,19 @@ export function Start() {
   const handleActivities = (event: SelectChangeEvent) => {
     setActivities(event.target.value as string);
   };
-  
+
   const navigate = useNavigate();
 
   const onSubmit = async () => {
-    await api.post("/createuser", {
+    await api.post("/assistance/createuser", {
+      id,
       gender,
       age,
       weight,
       height,
       activities,
     });
-    navigate("/");
+    navigate("/setNoti");
   };
 
   return (
@@ -46,7 +48,7 @@ export function Start() {
       <h1 className="text-center text-2xl m-10 font-extrabold">
         กรุณากรอกข้อมูลส่วนตัว
       </h1>
-      <ul className="flex justify-evenly m-10">
+      <ul className="flex justify-evenly space-x-5 m-10">
         <li>
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
@@ -76,7 +78,7 @@ export function Start() {
           />
         </li>
       </ul>
-      <ul className="flex justify-evenly m-10">
+      <ul className="flex justify-evenly space-x-5 m-10">
         <li>
           <TextField
             id="weight"
@@ -100,37 +102,40 @@ export function Start() {
           />
         </li>
       </ul>
-      <Box sx={{ minWidth: 120, mx: 10 }}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">
-            กิจกรรมระหว่างวัน
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={activities}
-            label="กิจกรรมระหว่างวัน"
-            onChange={handleActivities}
-          >
-            <MenuItem value={"นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย"}>
-              นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย
-            </MenuItem>
-            <MenuItem value={"ออกกำลังกายเบาๆ (1-2 ครั้งต่อสัปดาห์)"}>
-              ออกกำลังกายเบาๆ (1-2 ครั้งต่อสัปดาห์)
-            </MenuItem>
-            <MenuItem value={"ออกกำลังกายปานกลาง (3-5 ครั้งต่อสัปดาห์)"}>
-              ออกกำลังกายปานกลาง (3-5 ครั้งต่อสัปดาห์)
-            </MenuItem>
-            <MenuItem value={"ออกกำลังกายหนักมาก (ทุกวัน วันละ 2 เวลา)"}>
-              ออกกำลังกายหนักมาก (ทุกวัน วันละ 2 เวลา)
-            </MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
+      <div className="space-x-5">
+        <Box sx={{ minWidth: 120, mx: 5 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">
+              กิจกรรมระหว่างวัน
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={activities}
+              label="กิจกรรมระหว่างวัน"
+              onChange={handleActivities}
+            >
+              <MenuItem value={"นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย"}>
+                นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย
+              </MenuItem>
+              <MenuItem value={"ออกกำลังกายเบาๆ (1-2 ครั้งต่อสัปดาห์)"}>
+                ออกกำลังกายเบาๆ (1-2 ครั้งต่อสัปดาห์)
+              </MenuItem>
+              <MenuItem value={"ออกกำลังกายปานกลาง (3-5 ครั้งต่อสัปดาห์)"}>
+                ออกกำลังกายปานกลาง (3-5 ครั้งต่อสัปดาห์)
+              </MenuItem>
+              <MenuItem value={"ออกกำลังกายหนักมาก (ทุกวัน วันละ 2 เวลา)"}>
+                ออกกำลังกายหนักมาก (ทุกวัน วันละ 2 เวลา)
+              </MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+      </div>
       <div className="m-10 text-center color-blueDark">
         <Button
           variant="contained"
           sx={{ bgcolor: "#0F044C", "&:hover": { backgroundColor: "#0F044C" } }}
+          fullWidth
           onClick={onSubmit}
         >
           ตกลง
