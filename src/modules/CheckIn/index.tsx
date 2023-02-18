@@ -28,7 +28,7 @@ export function CheckIn() {
     if (submitted.current) return;
     submitted.current = true;
 
-    await api.post("/engage/checkin", {
+    await api.post("/engage/friend", {
       location,
       willShare,
     });
@@ -46,6 +46,7 @@ export function CheckIn() {
           <Link
             onClick={() => setPageStage(PageStage.SELECT_LOCATION)}
             className="pr-1"
+            style={{ cursor: "pointer" }}
           >
             กลับ
           </Link>

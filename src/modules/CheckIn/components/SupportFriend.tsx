@@ -16,7 +16,7 @@ export const SupportFriend = () => {
 
   useEffect(() => {
     const load = async () => {
-      const res = await api.get("/engage/support");
+      const res = await api.get("/engage/friend");
       setFriend(res.data);
       setLoaded(true);
     };
