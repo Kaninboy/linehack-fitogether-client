@@ -28,7 +28,7 @@ export const UserProvider = (props: UserProviderProps) => {
   useEffect(() => {
     async function init() {
       await liff.init({
-        liffId: "1657898837-o0mD9EkV",
+        liffId: "1657899416-qxVABG7y",
       });
       if (!liff.isLoggedIn()) {
         liff.login();
