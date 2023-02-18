@@ -28,7 +28,7 @@ export function CheckIn() {
     if (submitted.current) return;
     submitted.current = true;
 
-    await api.post("/engage/friend", {
+    await api.post("/engage/checkin", {
       location,
       willShare,
     });

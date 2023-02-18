@@ -61,7 +61,7 @@ export const SupportFriend = () => {
                 aria-label="upload picture"
                 component="label"
                 onClick={() => {
-                  api.post("/engage/support", {
+                  api.post("/engage/friend", {
                     friendId: friend.userId,
                     message,
                   });
