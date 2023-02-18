@@ -40,6 +40,7 @@ export const UserProvider = (props: UserProviderProps) => {
       setIsReady(true);
     }
     init();
+    // setIsReady(true);
   }, []);
 
   if (!isReady)
