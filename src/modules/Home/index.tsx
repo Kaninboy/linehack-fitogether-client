@@ -28,42 +28,15 @@ export function Home() {
     name: string;
   }
 
+  const [foodData, setFoodData] = useState<Item[]>([]);
+  const items: Item[] = foodData;
+
   const loadFood = async () => {
-    const res = await api.get("/assistance/getuserdata/:id"); //get the food data
-    // setFoodData(res.data);
+    const res = await api.get("/assistance/getallfooddata"); //get the food data
+    setFoodData(res.data);
   };
   loadFood();
 
-  const items: Item[] = [
-    // item from api.get
-    {
-      id: "1234",
-      type: "italian food",
-      ingredient: "ingredient",
-      howtocook: "how to cook",
-      calories: "300",
-      pic: "https://media.discordapp.net/attachments/889898647523852369/1063782135636439060/Screenshot_from_2023-01-14_18-29-18.png",
-      name: "Item1"
-    },
-    {
-      id: "1234",
-      type: "italian food",
-      ingredient: "ingredient",
-      howtocook: "how to cook",
-      calories: "300",
-      pic: "https://media.discordapp.net/attachments/889898647523852369/1063782135636439060/Screenshot_from_2023-01-14_18-29-18.png",
-      name: "Item2"
-    },
-    {
-      id: "1234",
-      type: "italian food",
-      ingredient: "ingredient",
-      howtocook: "how to cook",
-      calories: "300",
-      pic: "https://media.discordapp.net/attachments/889898647523852369/1063782135636439060/Screenshot_from_2023-01-14_18-29-18.png",
-      name: "Item3"
-    },
-  ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentCard = items[currentIndex];
@@ -119,7 +92,6 @@ export function Home() {
             <ArrowForward />
           </IconButton>
         </Box>
-        {/* import components scrollcard */}
       </ul>
     </div>
   );

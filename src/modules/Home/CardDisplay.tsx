@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, IconButton } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 const CardDisplay: React.FC = () => {
   const navigate = useNavigate();
@@ -11,8 +11,6 @@ const CardDisplay: React.FC = () => {
   const handleBack = () => {
     navigate(-1);
   };
-
-  console.log(location.state);
 
   return (
     <div>
@@ -44,9 +42,11 @@ const CardDisplay: React.FC = () => {
             </Typography>
           </Box>
           <div className="flex justify-center">
-            <button className="bg-lineGreen text-white text-sm text-center px-10 py-2 m-5 rounded-md">
-              สั่งอาหารผ่าน LINE MAN ตอนนี้เลย !
-            </button>
+            <Link to={item.api} target="_blank">
+              <button className="bg-lineGreen text-white text-sm text-center px-10 py-2 m-5 rounded-md">
+                สั่งอาหารผ่าน LINE MAN ตอนนี้เลย !
+              </button>
+            </Link>
           </div>
         </Box>
       ) : (
