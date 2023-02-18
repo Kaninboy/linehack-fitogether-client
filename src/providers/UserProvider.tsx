@@ -54,6 +54,7 @@ export const UserProvider = (props: UserProviderProps) => {
           }}
           height={210}
           width={220}
+          speed={1.7}
         />
         กำลังโหลด...
       </div>
