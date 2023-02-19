@@ -31,6 +31,7 @@ export function CheckIn() {
     await api.post("/engage/checkin", {
       location,
       willShare,
+      fromGroup: searchParams.has("share"),
     });
     liff.closeWindow();
   };
