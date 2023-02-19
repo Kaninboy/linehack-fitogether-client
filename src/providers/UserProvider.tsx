@@ -30,7 +30,10 @@ export const UserProvider = (props: UserProviderProps) => {
       const start = new Date().getTime();
 
       await liff.init({
-        liffId: "1657899416-qxVABG7y",
+        liffId:
+          window.location.pathname === "/checkin"
+            ? "1657899416-qxVABG7y"
+            : "1657899416-ED4zN1Pr",
       });
       if (!liff.isLoggedIn()) {
         liff.login();
