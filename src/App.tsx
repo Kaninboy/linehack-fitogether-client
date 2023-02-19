@@ -7,6 +7,7 @@ import { Home } from "./modules/Home";
 import { Start } from "./modules/Start/Start";
 import CardDisplay from "./modules/Home/CardDisplay";
 import TimePickerPage from "./modules/Start/SetNoti";
+import { FindFitness } from "./modules/FindFitness";
 
 function App() {
   return (
@@ -16,9 +17,9 @@ function App() {
           <Route path="/checkin" element={<CheckIn />} />
           <Route path="/start" element={<Start/>}/>
           <Route path="/card" element={<CardDisplay/>}/>
-          <Route path="/setNoti" element={<TimePickerPage/>}/>
+          <Route path="/setnoti" element={<TimePickerPage/>}/>
+          <Route path="/findfitness" element={<FindFitness />} />
           <Route path="*" element={<Home />} />
-          
         </Routes>
       </UserProvider>
     </ThemeProvider>

@@ -14,7 +14,6 @@ import { api } from "../../common/api";
 import { useNavigate } from "react-router-dom";
 
 export function Start() {
-  let id = "01234";
   const [age, setAge] = React.useState("");
   const [weight, setWeight] = React.useState("");
   const [height, setHeight] = React.useState("");
@@ -33,14 +32,13 @@ export function Start() {
 
   const onSubmit = async () => {
     await api.post("/assistance/createuser", {
-      id,
       gender,
       age,
       weight,
       height,
       activities,
     });
-    navigate("/setNoti");
+    navigate("/setnoti");
   };
 
   return (

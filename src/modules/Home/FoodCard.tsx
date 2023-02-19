@@ -2,39 +2,35 @@ import React from "react";
 import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 
 interface SlideCardProps {
-  id: string;
-  type: string;
-  ingredient: string;
-  howtocook: string;
+  type: string[];
   calories: string;
   pic: string;
   name: string;
 }
 
-const FoodCard: React.FC<SlideCardProps> = ({
-  id,
-  type,
-  ingredient,
-  howtocook,
-  calories,
-  pic,
-  name,
-}) => {
+const FoodCard: React.FC<SlideCardProps> = ({ type, calories, pic, name }) => {
   return (
     <Card>
-      <CardMedia src={pic} title={name} />
+      <CardMedia
+        component="img"
+        src={pic}
+        title={name}
+        sx={{
+          width: "20rem",
+          maxHeight: "12rem",
+          minHeight: "11rem",
+          objectFit: "cover",
+        }}
+      />
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
-          {name} {calories} kcal
+          {name}
         </Typography>
-        <Typography variant="subtitle1" color="textSecondary" component="p">
-          {type}
+        <Typography gutterBottom variant="subtitle1" component="h2">
+          {calories} kcal
         </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {ingredient}
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {howtocook}
+        <Typography gutterBottom variant="body1" component="h2">
+          {type.join(", ")}
         </Typography>
       </CardContent>
     </Card>

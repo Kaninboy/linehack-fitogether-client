@@ -13,14 +13,21 @@ const CardDisplay: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="text-xs">
       {item ? (
         <Box className="font-line">
-          <IconButton onClick={handleBack}>
-            <ArrowBack />
-          </IconButton>
-          <Box sx={{ mt: 10, textAlign: "center" }} className="space-y-5">
-            <img src={item.pic} alt={item.name} className="block mx-auto" />
+          <div className="flex items-center">
+            <IconButton onClick={handleBack}>
+              <ArrowBack />
+            </IconButton>
+            <p>กลับไปหน้าเมนูอาหารแนะนำ</p>
+          </div>
+          <Box sx={{ mt: 1, textAlign: "center" }} className="space-y-5">
+            <img
+              src={item.pic}
+              alt={item.name}
+              className="align-middle max-w-[75%] max-h-48 sm:h-12rem mx-auto rounded-lg shadow-lg object-cover"
+            />
             <div className="flex justify-evenly">
               <Typography variant="h5" component="h3" gutterBottom>
                 {item.name}
@@ -34,15 +41,29 @@ const CardDisplay: React.FC = () => {
                 {item.calories} kcal
               </Typography>
             </div>
-            <Typography variant="subtitle1" component="h4" gutterBottom>
-              {item.ingredient}
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              {item.howtocook}
-            </Typography>
+            <div className="text-left pl-4">
+              <h2>ส่วนผสม</h2>
+              <ol>
+                {item.ingredient.map((step: string, index: number) => (
+                  <li key={index} className="mr-4">
+                    {index + 1}. {step}
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <div className="text-left pl-4">
+              <h2>ขั้นตอนและวิธีการทำ</h2>
+              <ol>
+                {item.howtocook.map((step: string, index: number) => (
+                  <li key={index} className="mr-4">
+                    {index + 1}. {step}
+                  </li>
+                ))}
+              </ol>
+            </div>
           </Box>
           <div className="flex justify-center">
-            <Link to={item.api} target="_blank">
+            <Link to={item.linemanLink} target="_blank">
               <button className="bg-lineGreen text-white text-sm text-center px-10 py-2 m-5 rounded-md">
                 สั่งอาหารผ่าน LINE MAN ตอนนี้เลย !
               </button>
