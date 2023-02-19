@@ -38,9 +38,10 @@ export function CheckIn() {
   return (
     <div className="p-2 flex flex-col min-h-screen justify-between">
       <div className="flex justify-between">
-        <h1 className="text-lg">
-          <span className="font-bold">สวัสดี {profile?.displayName} </span>
-          มาเช็คอินกันเถอะ!
+        <h1 className="text-lg text-center w-full pb-4 ">
+          สวัสดี 🙏 คุณ
+          <span className="font-bold"> {profile?.displayName} </span>
+          มาเช็คอินกันเถอะ !
         </h1>
         {pageStage === PageStage.CONFIRM && (
           <Link

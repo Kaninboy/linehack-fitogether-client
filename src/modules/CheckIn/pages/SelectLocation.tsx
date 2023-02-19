@@ -34,7 +34,7 @@ export const SelectLocation = (props: SelectLocationProps) => {
         />
       )}
       <div className="flex flex-col gap-2 flex-grow">
-        <h2 className="text-2xl">สถานที่</h2>
+        <h2 className="text-2xl text-center w-full">สถานที่ 🏫</h2>
         <Button
           variant={
             location.type === LocationType.PLACE_NAME &&
