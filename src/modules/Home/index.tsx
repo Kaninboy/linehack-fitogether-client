@@ -1,9 +1,19 @@
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import { Box, IconButton } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../common/api";
 import FoodCard from "./FoodCard";
+
+interface Item {
+  id: string;
+  type: string[];
+  ingredient: string;
+  howtocook: string;
+  calories: string;
+  pic: string;
+  name: string;
+}
 
 export function Home() {
   const [userData, setUserData] = useState<{
@@ -11,34 +21,34 @@ export function Home() {
     tdee: number;
     bmi: number;
   } | null>(null);
-
-  const load = async () => {
-    const res = await api.get("/assistance/getuserdata/:id");
-    setUserData(res.data);
-  };
-  load();
-
-  interface Item {
-    id: string;
-    type: string;
-    ingredient: string;
-    howtocook: string;
-    calories: string;
-    pic: string;
-    name: string;
-  }
-
+  const [loading, setLoading] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [foodData, setFoodData] = useState<Item[]>([]);
+  const navigate = useNavigate();
   const items: Item[] = foodData;
 
-  const loadFood = async () => {
-    const res = await api.get("/assistance/getallfooddata"); //get the food data
-    setFoodData(res.data);
-  };
-  loadFood();
+  useEffect(()=>{
+    const load = async () => {
+      const res = await api.get("/assistance/getuserdata");
+      setUserData(res.data);
+    };
+    load();
 
+     const loadFood = async () => {
+      const res = await api.get("/assistance/food"); //get the food data
+      setFoodData(res.data.data);
+    };
+    loadFood();
+    setLoading(false)
+  }, [])
+ 
+  if (loading) {
+    return <p>Loading</p>
+  }
+  if (foodData.length === 0) {
+    return <p>No food</p>
+  }
 
-  const [currentIndex, setCurrentIndex] = useState(0);
   const currentCard = items[currentIndex];
 
   const handleNext = () => {
@@ -57,8 +67,6 @@ export function Home() {
     }
   };
 
-  const navigate = useNavigate();
-
   const handleNavigateCard = () => {
     navigate('/card', { state: {currentCard} });
   };
@@ -68,9 +76,10 @@ export function Home() {
       <h1 className="font-bold text-2xl m-10">ใน 1 วันคุณเผาผลาญพลังงาน</h1>
       <ul className="text-lg">
         <li className="m-5">การเผาผลาญขั้นต่ำ BMR</li>
-        <li className="m-5">1500{userData?.bmr} kcal/day</li>
+        <li className="m-5">{userData?.bmr} kcal/day</li>
         <li className="m-5">การเผาผลาญเมื่อทำกิจกรรม TDEE</li>
-        <li className="m-5">2000{userData?.tdee} kcal/day</li>
+        <li className="m-5">{userData?.tdee} kcal/day</li>
+        <li className="m-5">ค่า BMI ของคุณ {userData?.bmi}</li>
       </ul>
       <ul>
         <li className="text-lg mt-10">เมนูอาหารแนะนำวันนี้</li>

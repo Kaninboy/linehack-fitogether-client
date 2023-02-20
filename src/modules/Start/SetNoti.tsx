@@ -10,19 +10,23 @@ function TimePickerPage() {
   const navigate = useNavigate();
 
   const handleEnter = async () => {
-    await api.post("/assistance/updatenotification", { breakfast: breakfastTime, lunch: lunchTime, dinner: dinnerTime });
-    navigate("/")
+    await api.post("/assistance/updatenotification", {
+      breakfast: breakfastTime,
+      lunch: lunchTime,
+      dinner: dinnerTime,
+    });
+    navigate("/");
   };
 
   return (
-    <Box className="p-5">
-      <Typography variant="h4" component="h1" className="mb-5">
-        Choose Time
+    <Box className="p-5 font-line text-center space-y-10">
+      <Typography sx={{ fontSize: "1.5rem", mt: 2.5, mb: 10 }} component="h1">
+        ตั้งเวลาแจ้งเตือนมื้ออาหาร
       </Typography>
-      <div className="flex flex-col space-y-3 mb-5">
+      <div className="flex flex-col space-y-5 mb-5">
         <TextField
           type="time"
-          label="Breakfast Time"
+          label="มื้อเช้า"
           variant="outlined"
           size="small"
           value={breakfastTime}
@@ -30,7 +34,7 @@ function TimePickerPage() {
         />
         <TextField
           type="time"
-          label="Lunch Time"
+          label="มื้อกลางวัน"
           variant="outlined"
           size="small"
           value={lunchTime}
@@ -38,19 +42,23 @@ function TimePickerPage() {
         />
         <TextField
           type="time"
-          label="Dinner Time"
+          label="มื้อเย็น"
           variant="outlined"
           size="small"
           value={dinnerTime}
           onChange={(e) => setDinnerTime(e.target.value)}
         />
       </div>
-      <Button variant="contained" onClick={handleEnter}>
-        Enter
+      <Button
+        variant="contained"
+        fullWidth
+        sx={{ bgcolor: "#0F044C", "&:hover": { backgroundColor: "#0F044C" } }}
+        onClick={handleEnter}
+      >
+        ตกลง
       </Button>
     </Box>
   );
 }
 
 export default TimePickerPage;
-
