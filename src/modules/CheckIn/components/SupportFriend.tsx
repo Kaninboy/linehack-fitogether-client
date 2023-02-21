@@ -16,7 +16,7 @@ export const SupportFriend = () => {
 
   useEffect(() => {
     const load = async () => {
-      const res = await api.get("/engage/support");
+      const res = await api.get("/engage/friend");
       setFriend(res.data);
       setLoaded(true);
     };
@@ -61,7 +61,7 @@ export const SupportFriend = () => {
                 aria-label="upload picture"
                 component="label"
                 onClick={() => {
-                  api.post("/engage/support", {
+                  api.post("/engage/friend", {
                     friendId: friend.userId,
                     message,
                   });

@@ -27,8 +27,13 @@ export const UserProvider = (props: UserProviderProps) => {
 
   useEffect(() => {
     async function init() {
+      const start = new Date().getTime();
+
       await liff.init({
-        liffId: "1657898837-o0mD9EkV",
+        liffId:
+          window.location.pathname === "/checkin"
+            ? "1657899416-qxVABG7y"
+            : "1657899416-ED4zN1Pr",
       });
       if (!liff.isLoggedIn()) {
         liff.login();
@@ -37,10 +42,15 @@ export const UserProvider = (props: UserProviderProps) => {
       const profile = await liff.getProfile();
       setProfile(profile);
 
-      setIsReady(true);
+      const diff = new Date().getTime() - start;
+      setTimeout(
+        () => {
+          setIsReady(true);
+        },
+        1800 - diff > 0 ? 1800 - diff : 0
+      );
     }
     init();
-    // setIsReady(true);
   }, []);
 
   if (!isReady)
@@ -54,6 +64,7 @@ export const UserProvider = (props: UserProviderProps) => {
           }}
           height={210}
           width={220}
+          speed={2}
         />
         กำลังโหลด...
       </div>

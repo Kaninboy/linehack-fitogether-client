@@ -1,5 +1,7 @@
 import { Button } from "@mui/material";
+import { useState } from "react";
 import { PageStage } from "..";
+import { SelectMap } from "../components/SelectMap";
 
 export enum LocationType {
   LAT_LONG = "LAT_LONG",
@@ -20,11 +22,19 @@ interface SelectLocationProps {
 
 export const SelectLocation = (props: SelectLocationProps) => {
   const { location, setLocation, setPageStage } = props;
+  const [showMap, setShowMap] = useState(false);
 
   return (
     <>
+      {showMap && (
+        <SelectMap
+          setLocation={setLocation}
+          setShowMap={setShowMap}
+          location={location}
+        />
+      )}
       <div className="flex flex-col gap-2 flex-grow">
-        <h2 className="text-2xl">สถานที่</h2>
+        <h2 className="text-2xl text-center w-full">สถานที่ 🏫</h2>
         <Button
           variant={
             location.type === LocationType.PLACE_NAME &&
@@ -112,7 +122,9 @@ export const SelectLocation = (props: SelectLocationProps) => {
           ที่ทำงาน/สถานศึกษา
         </Button>
         <Button
-          variant="outlined"
+          variant={
+            location.type === LocationType.LAT_LONG ? "contained" : "outlined"
+          }
           size="large"
           fullWidth
           startIcon={
@@ -132,13 +144,13 @@ export const SelectLocation = (props: SelectLocationProps) => {
             </svg>
           }
           onClick={() => {
-            setLocation({
-              type: LocationType.LAT_LONG,
-              name: "1.234,100.123",
-            });
+            setShowMap(true);
           }}
+          style={{ textTransform: "none" }}
         >
-          เลือกจากแผนที่...
+          {location.type === LocationType.LAT_LONG
+            ? location.name?.split(",")[2]
+            : "เลือกบนแผนที่..."}
         </Button>
       </div>
       <Button
