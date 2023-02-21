@@ -1,14 +1,34 @@
 import { ArrowBack } from "@mui/icons-material";
 import { Box, IconButton, Typography } from "@mui/material";
+import { useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { api } from "../../../common/api";
 
 export function FitnessDetail() {
   const navigate = useNavigate();
   const location = useLocation();
   const item = location.state.currentCard;
+  const isFetching = useRef(false);
 
   const handleBack = () => {
     navigate(-1);
+  };
+
+  const handleLinePayPurchase = async () => {
+    if (isFetching.current) return;
+    isFetching.current = true;
+
+    const res = await api.post("/payment/reserve", {
+      fitnessId: item.id,
+    });
+    if (!res.data.url) {
+      alert("ไม่สามารถทำรายการได้");
+      isFetching.current = false;
+      return;
+    }
+
+    window.location.href = res.data.url;
+    isFetching.current = false;
   };
 
   console.log(item);
@@ -62,12 +82,23 @@ export function FitnessDetail() {
               </ol>
             </div>
           </Box>
-          <div className="flex justify-center">
-            <Link to={item.web_api} target="_blank">
-              <button className="bg-blueDark text-white text-sm text-center px-10 py-2 m-5 rounded-md">
+          <div className="flex flex-col justify-center m-6 gap-2">
+            <Link to={item.web_api} className="flex w-full" target="_blank">
+              <button className="flex  justify-center bg-blueDark text-white w-full text-sm text-center px-10 py-2 rounded-lg">
                 เข้าสู้เว็บไซต์ทางการของฟิตเนส !
               </button>
             </Link>
+            <button
+              className="flex sm:flex-row flex-col sm:gap-2 justify-center items-center bg-lineGreen text-white text-sm px-10 py-2 rounded-lg"
+              onClick={handleLinePayPurchase}
+            >
+              สมัครสมาชิกผ่าน{" "}
+              <img
+                className="h-8"
+                src="/images/linepay-logo.png"
+                alt="linepay"
+              />
+            </button>
           </div>
         </Box>
       ) : (

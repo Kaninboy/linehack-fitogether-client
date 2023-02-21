@@ -6,7 +6,7 @@ import { api } from "../../common/api";
 export function FindFitness() {
   const navigate = useNavigate();
   const [personalLocation, setPersonalLocation] = useState("");
-  
+
   // get their peronalLocation first
   const onSubmit = async () => {
     await api.post("/assistance/createuser", {
