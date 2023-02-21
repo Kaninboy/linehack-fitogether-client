@@ -26,7 +26,7 @@ const CardDisplay: React.FC = () => {
             <img
               src={item.pic}
               alt={item.name}
-              className="align-middle max-w-[75%] max-h-48 sm:h-12rem mx-auto rounded-lg shadow-lg object-cover"
+              className="align-middle w-[75%] max-h-48 sm:h-12rem mx-auto rounded-lg shadow-lg object-cover"
             />
             <div className="flex justify-evenly">
               <Typography variant="h5" component="h3" gutterBottom>
