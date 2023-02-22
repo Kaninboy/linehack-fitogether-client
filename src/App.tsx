@@ -5,7 +5,7 @@ import { CheckIn } from "./modules/CheckIn";
 import { UserProvider } from "./providers/UserProvider";
 import { Home } from "./modules/Home";
 import { Start } from "./modules/Start/Start";
-import CardDisplay from "./modules/Home/Pages/CardDisplay";
+import CardDisplay from "./modules/Home/Pages/FoodDisplay";
 import TimePickerPage from "./modules/Start/SetNoti";
 import { FindFitness } from "./modules/FindFitness";
 import { FitnessQR } from "./modules/FitnessQR/FitnessQR";
