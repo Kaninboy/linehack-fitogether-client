@@ -23,26 +23,34 @@ const CardDisplay: React.FC = () => {
             <p>กลับไปหน้าเมนูอาหารแนะนำ</p>
           </div>
           <Box sx={{ mt: 1, textAlign: "center" }} className="space-y-5">
-            <img
-              src={item.pic}
-              alt={item.name}
-              className="align-middle w-[75%] max-h-48 sm:h-12rem mx-auto rounded-lg shadow-lg object-cover"
-            />
-            <div className="flex justify-evenly">
-              <Typography variant="h5" component="h3" gutterBottom>
-                {item.name}
-              </Typography>
+            <div className="flex justify-center">
+            <div className="relative w-[75%] overflow-hidden">
+              <img
+                src={item.pic}
+                alt={item.name}
+                className="align-middle w-full max-h-48 sm:h-12rem mx-auto rounded-lg shadow-lg object-cover"
+              />
               <Typography
-                variant="h5"
+                variant="body2"
                 component="h3"
-                gutterBottom
-                className="text-right"
+                className="absolute -left-[32px] top-[20px] -rotate-45 text-white font-bold bg-greyMain opacity-80  w-32"
               >
                 {item.calories} kcal
               </Typography>
             </div>
-            <div className="text-left pl-4">
-              <h2>ส่วนผสม</h2>
+            </div>
+            <div className="flex justify-evenly mt-60 mb-30">
+              <Typography
+                variant="h5"
+                component="h3"
+                gutterBottom
+                sx={{ fontSize: "xx-large" }}
+              >
+                {item.name}
+              </Typography>
+            </div>
+            <div className="flex flex-col text-left pl-4">
+              <h2 className="text-lg color-blueDark">ส่วนผสม</h2>
               <ol>
                 {item.ingredient.map((step: string, index: number) => (
                   <li key={index} className="mr-4">
@@ -76,7 +84,7 @@ const CardDisplay: React.FC = () => {
             <ArrowBack />
           </IconButton>
           <Typography variant="body2" component="p">
-            No item found.
+            ไม่มีเมนูอาหารที่จะแสดง
           </Typography>
         </Box>
       )}

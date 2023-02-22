@@ -16,7 +16,7 @@ const FoodCard: React.FC<SlideCardProps> = ({ type, calories, pic, name }) => {
         src={pic}
         title={name}
         sx={{
-          width: "20rem",
+          width: "75",
           maxHeight: "12rem",
           minHeight: "11rem",
           objectFit: "cover",

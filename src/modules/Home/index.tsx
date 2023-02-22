@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../common/api";
 import FoodCard from "./components/FoodCard";
+import Carousel from "react-material-ui-carousel";
 
 interface Item {
   id: string;
@@ -79,7 +80,8 @@ export function Home() {
     }
   };
 
-  const handleNavigateCard = () => {
+  const handleNavigateCard = (card: Item) => {
+    let currentCard = card;
     navigate("/card", { state: { currentCard } });
   };
 
@@ -95,24 +97,26 @@ export function Home() {
       </ul>
       <ul>
         <li className="text-lg mt-10">เมนูอาหารแนะนำวันนี้</li>
-        <Box
+
+        <Carousel
+          navButtonsAlwaysVisible
           sx={{
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
             mt: 5,
           }}
         >
-          <IconButton onClick={handlePrev}>
-            <ArrowBack />
-          </IconButton>
-          <div onClick={() => handleNavigateCard()}>
-            <FoodCard {...currentCard} />
-          </div>
-          <IconButton onClick={handleNext}>
-            <ArrowForward />
-          </IconButton>
-        </Box>
+          {items.map((card) => (
+            <div
+              className="m-5 w-75 h-90"
+              onClick={() => handleNavigateCard(card)}
+            >
+              <FoodCard {...card} />
+            </div>
+          ))}
+        </Carousel>
       </ul>
     </div>
   );
