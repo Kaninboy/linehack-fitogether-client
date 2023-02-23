@@ -1,5 +1,6 @@
 import { ThemeProvider, Typography } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import { theme } from "./common/theme";
 import { CheckIn } from "./modules/CheckIn";
 import { UserProvider } from "./providers/UserProvider";
@@ -16,6 +17,7 @@ import { PaymentComplete } from "./modules/Payment/pages/PaymentComplete";
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <Toaster />
       <UserProvider>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -25,7 +27,7 @@ function App() {
           <Route path="/setnoti" element={<TimePickerPage />} />
           <Route path="/findfitness" element={<FindFitness />} />
           <Route path="/fitnesslist" element={<FitnessList />} />
-          <Route path="/fitnessdetail" element={<FitnessDetail />} />
+          <Route path="/fitness/:id" element={<FitnessDetail />} />
           <Route path="/fitnessqr" element={<FitnessQR />} />
           <Route path="/payment/success" element={<PaymentComplete />} />
           <Route path="*" element={<p>Not Found</p>} />
