@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardMedia, CardContent, Typography } from "@mui/material";
+import { ImageListItem, ImageListItemBar } from "@mui/material";
 
 interface SlideCardProps {
   type: string[];
@@ -8,32 +8,19 @@ interface SlideCardProps {
   name: string;
 }
 
-const FoodCard: React.FC<SlideCardProps> = ({ type, calories, pic, name }) => {
+const FoodCard: React.FC<SlideCardProps> = ({ calories, pic, name }) => {
   return (
-    <Card>
-      <CardMedia
-        component="img"
-        src={pic}
-        title={name}
-        sx={{
-          width: "75",
-          maxHeight: "12rem",
-          minHeight: "11rem",
-          objectFit: "cover",
-        }}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
-          {name}
-        </Typography>
-        <Typography gutterBottom variant="subtitle1" component="h2">
-          {calories} kcal
-        </Typography>
-        <Typography gutterBottom variant="body1" component="h2">
-          {type.join(", ")}
-        </Typography>
-      </CardContent>
-    </Card>
+    <>
+      <ImageListItem key={pic}>
+        <img
+          src={`${pic}?w=248&fit=crop&auto=format`}
+          alt={name}
+          className="w-75 max-h-48 object-cover overflow-hidden"
+          loading="lazy"
+        />
+        <ImageListItemBar title={name} subtitle={calories + " กิโลแคลอรี่"} />
+      </ImageListItem>
+    </>
   );
 };
 

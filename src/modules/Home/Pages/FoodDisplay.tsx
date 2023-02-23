@@ -13,7 +13,7 @@ const CardDisplay: React.FC = () => {
   };
 
   return (
-    <div className="text-xs">
+    <div className="text-xs bg-greyLight min-h-screen">
       {item ? (
         <Box className="font-line">
           <div className="flex items-center">
@@ -24,50 +24,54 @@ const CardDisplay: React.FC = () => {
           </div>
           <Box sx={{ mt: 1, textAlign: "center" }} className="space-y-5">
             <div className="flex justify-center">
-            <div className="relative w-[75%] overflow-hidden">
-              <img
-                src={item.pic}
-                alt={item.name}
-                className="align-middle w-full max-h-48 sm:h-12rem mx-auto rounded-lg shadow-lg object-cover"
-              />
-              <Typography
-                variant="body2"
-                component="h3"
-                className="absolute -left-[32px] top-[20px] -rotate-45 text-white font-bold bg-greyMain opacity-80  w-32"
-              >
-                {item.calories} kcal
-              </Typography>
-            </div>
+              <div className="relative w-11/12 overflow-hidden">
+                <img
+                  src={item.pic}
+                  alt={item.name}
+                  className="align-middle w-full max-h-72 sm:h-18rem mx-auto rounded-lg shadow-2xl object-cover"
+                />
+                <Typography
+                  variant="body2"
+                  component="h3"
+                  className="absolute -left-[32px] top-[20px] -rotate-45 text-white font-bold bg-greyMain opacity-80  w-32"
+                >
+                  {item.calories} kcal
+                </Typography>
+              </div>
             </div>
             <div className="flex justify-evenly mt-60 mb-30">
               <Typography
                 variant="h5"
                 component="h3"
                 gutterBottom
-                sx={{ fontSize: "xx-large" }}
+                sx={{ fontSize: "xx-large" , fontWeight: "bold"}}
               >
                 {item.name}
               </Typography>
             </div>
-            <div className="flex flex-col text-left pl-4">
-              <h2 className="text-lg color-blueDark">ส่วนผสม</h2>
-              <ol>
-                {item.ingredient.map((step: string, index: number) => (
-                  <li key={index} className="mr-4">
-                    {index + 1}. {step}
-                  </li>
-                ))}
-              </ol>
+            <div className="m-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
+              <div className="flex flex-col text-left pl-4">
+                <h2 className="text-lg">ส่วนผสม</h2>
+                <ol>
+                  {item.ingredient.map((step: string, index: number) => (
+                    <li key={index} className="mr-4">
+                      {index + 1}. {step}
+                    </li>
+                  ))}
+                </ol>
+              </div>
             </div>
-            <div className="text-left pl-4">
-              <h2>ขั้นตอนและวิธีการทำ</h2>
-              <ol>
-                {item.howtocook.map((step: string, index: number) => (
-                  <li key={index} className="mr-4">
-                    {index + 1}. {step}
-                  </li>
-                ))}
-              </ol>
+            <div className="m-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
+              <div className="flex flex-col text-left pl-4">
+                <h2 className="text-lg">ขั้นตอนและวิธีการทำ</h2>
+                <ol>
+                  {item.howtocook.map((step: string, index: number) => (
+                    <li key={index} className="mr-4">
+                      {index + 1}. {step}
+                    </li>
+                  ))}
+                </ol>
+              </div>
             </div>
           </Box>
           <div className="flex justify-center">
