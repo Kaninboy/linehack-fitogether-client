@@ -16,27 +16,45 @@ export const CalMemo = () => {
   const memoRef = useRef<HTMLInputElement>(null);
   const calorieRef = useRef<HTMLInputElement>(null);
   const dateRef = useRef<HTMLInputElement>(null);
+  const submitting = useRef(false);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (submitting.current) return;
+    submitting.current = true;
+
     if (e.target.files) {
       const file = e.target.files[0];
-      const res = await api.post("/calmemo/image", {
-        contentType: file.type,
-      });
+      toast.promise(
+        (async () => {
+          const res = await api.post("/calmemo/image", {
+            contentType: file.type,
+          });
 
-      // put to gcs signed url
-      await axios.put(res.data.url, file, {
-        headers: {
-          "Content-Type": file.type,
-        },
-      });
-      setImageUrl(res.data.url.split("?")[0]);
-      toast.success("อัปโหลดสำเร็จ");
+          // put to gcs signed url
+          await axios.put(res.data.url, file, {
+            headers: {
+              "Content-Type": file.type,
+            },
+          });
+          setImageUrl(res.data.url.split("?")[0]);
+        })(),
+        {
+          loading: "กำลังอัปโหลด",
+          success: <b>อัปโหลดสำเร็จ</b>,
+          error: <b>มีปัญหาระหว่างทำการอัปโหลด</b>,
+        }
+      );
     }
+
+    submitting.current = false;
   };
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    if (submitting.current) return;
+    submitting.current = true;
+
     if (
       !imageUrl ||
       !memoRef.current ||
@@ -54,6 +72,8 @@ export const CalMemo = () => {
     });
     toast.success("บันทึกสำเร็จ");
     setIsSubmitted(true);
+
+    submitting.current = false;
   };
 
   if (isSubmitted) return <Complete />;
@@ -81,7 +101,11 @@ export const CalMemo = () => {
           size="large"
           disabled={!!imageUrl}
         >
-          {imageUrl ? "อัปโหลดเรียบร้อย" : "อัปโหลดรูปภาพ"}
+          {imageUrl
+            ? "อัปโหลดเรียบร้อย"
+            : submitting.current
+            ? "กำลังประมวลผล..."
+            : "อัปโหลดรูปภาพ"}
           <input
             type="file"
             accept="image/*"
