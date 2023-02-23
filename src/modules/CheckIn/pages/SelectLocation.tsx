@@ -33,7 +33,7 @@ export const SelectLocation = (props: SelectLocationProps) => {
           location={location}
         />
       )}
-      <div className="flex flex-col gap-2 flex-grow">
+      <div className="flex flex-col gap-2 flex-grow mb-2">
         <h2 className="text-2xl text-center w-full">สถานที่ 🏫</h2>
         <Button
           variant={
