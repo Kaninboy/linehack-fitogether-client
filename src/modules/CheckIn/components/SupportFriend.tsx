@@ -45,7 +45,11 @@ export const SupportFriend = () => {
             <p className="text-md leading-0">
               <span className="font-bold">{friend.displayName}</span>{" "}
               ไม่ได้เช็คอินออกกำลังกายมาตั้งแต่{" "}
-              {new Date(friend.lastCheckedIn).toLocaleDateString()}
+              {new Date(friend.lastCheckedIn).toLocaleDateString("th-TH", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
             </p>
             <p className="text-md leading-0">เชิญมาเช็คอินกันไหม?</p>
             <div className="flex gap-2">
@@ -62,7 +66,7 @@ export const SupportFriend = () => {
                 aria-label="upload picture"
                 component="label"
                 onClick={async () => {
-                  await api.post("/engage/friend", {
+                  api.post("/engage/friend", {
                     friendId: friend.userId,
                     message,
                   });

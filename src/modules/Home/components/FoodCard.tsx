@@ -11,11 +11,16 @@ interface SlideCardProps {
 const FoodCard: React.FC<SlideCardProps> = ({ calories, pic, name }) => {
   return (
     <>
-      <ImageListItem key={pic}>
+      <ImageListItem
+        key={pic}
+        style={{
+          width: "100%",
+        }}
+      >
         <img
           src={`${pic}?w=248&fit=crop&auto=format`}
           alt={name}
-          className="w-75 max-h-48 object-cover overflow-hidden"
+          className="w-full h-full object-cover overflow-hidden"
           loading="lazy"
         />
         <ImageListItemBar title={name} subtitle={calories + " กิโลแคลอรี่"} />

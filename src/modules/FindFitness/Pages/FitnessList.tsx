@@ -1,8 +1,10 @@
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
+import Lottie from "react-lottie";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../../common/api";
 import FitnessCard from "../Components/FitnessCard";
+import animationData from "../../../assets/69209-olympics.json";
 
 export interface Fitness {
   id: string;
@@ -35,9 +37,7 @@ export function FitnessList() {
     loadFitness();
   }, []);
 
-  if (loading) {
-    return <p>Loading</p>;
-  }
+  if (loading) return null;
   if (fitnessData.length === 0) {
     return <p>No Fitness to display</p>;
   }

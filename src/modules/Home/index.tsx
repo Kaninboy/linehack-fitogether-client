@@ -87,7 +87,9 @@ export function Home() {
 
   return (
     <div className="text-center font-line bg-greyLight min-h-screen">
-      <h1 className="font-bold text-2xl p-10 pb-5">ใน 1 วันคุณเผาผลาญพลังงาน</h1>
+      <h1 className="font-bold text-2xl p-10 pb-5">
+        ใน 1 วันคุณเผาผลาญพลังงาน
+      </h1>
       <ul className="text-lg">
         <li className="m-5 font-bold">การเผาผลาญขั้นต่ำ BMR</li>
         <li className="m-5 flex justify-center">
@@ -124,7 +126,7 @@ export function Home() {
         >
           {items.map((card) => (
             <div
-              className="m-5 w-75"
+              className="flex m-5 pb-3 h-64"
               onClick={() => handleNavigateCard(card)}
             >
               <FoodCard {...card} />

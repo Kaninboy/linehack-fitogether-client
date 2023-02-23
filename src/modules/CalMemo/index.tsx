@@ -81,7 +81,7 @@ export const CalMemo = () => {
     <div>
       <form className="flex flex-col gap-4 p-6">
         <h1 className="text-2xl font-bold text-blueDark text-center">
-          บันทึกแคลอรี่
+          Calodiary
         </h1>
         <TextField
           label="วันที่"
@@ -97,18 +97,48 @@ export const CalMemo = () => {
             <InputAdornment position="end">กิโลแคลอรี่</InputAdornment>
           }
         />
-        <TextField label="บันทึก" variant="outlined" inputRef={memoRef} />
+        <TextField
+          label="โน้ตเพิ่มเติม"
+          variant="outlined"
+          inputRef={memoRef}
+        />
 
         {imageUrl ? (
           <img className="h-60 object-contain" src={imageUrl} />
         ) : (
           <Button
-            variant="contained"
+            variant="outlined"
             component="label"
             size="large"
+            sx={{ paddingY: "12px" }}
             disabled={!!imageUrl}
           >
-            {imageUrl ? "อัปโหลดเรียบร้อย" : "อัปโหลดภาพประกอบ"}
+            {imageUrl ? (
+              "อัปโหลดเรียบร้อย"
+            ) : (
+              <div className="flex gap-2 items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"
+                  />
+                </svg>
+                อัปโหลดภาพประกอบ
+              </div>
+            )}
             <input
               type="file"
               accept="image/*"
@@ -120,9 +150,11 @@ export const CalMemo = () => {
         )}
 
         <div className="flex flex-end">
-          <button
-            className="flex justify-center items-center gap-2 w-full text-white bg-blueDark py-3 px-4 rounded-md"
+          <Button
+            variant="contained"
             onClick={handleSubmit}
+            sx={{ paddingY: "14px" }}
+            fullWidth
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +171,7 @@ export const CalMemo = () => {
               />
             </svg>{" "}
             บันทึก
-          </button>
+          </Button>
         </div>
       </form>
     </div>
