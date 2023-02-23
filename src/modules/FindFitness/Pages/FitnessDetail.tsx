@@ -11,9 +11,15 @@ export function FitnessDetail() {
     navigate(-1);
   };
 
-  console.log(item);
   return (
-    <div className="text-xs">
+    <div
+      className="text-xs bg-cover bg-center min-h-screen"
+      // style={{
+      //   backgroundImage: `url(https://storage.googleapis.com/fitogether-me/assistanceFood/Stone%20backdrops%20_%20Backdrop%20_Palermo_%20Buy%20from%20e-shop.jpg)`,
+      //   backgroundPosition: "center",
+      //   backgroundSize: "cover",
+      // }}
+    >
       {item ? (
         <Box className="font-line">
           <div className="flex items-center">
@@ -23,43 +29,48 @@ export function FitnessDetail() {
             <p>กลับไปหน้าฟิตเนสแนะนำ</p>
           </div>
           <Box sx={{ mt: 1, textAlign: "center" }} className="space-y-5">
-            <img
-              src={item.pic}
-              alt={item.name}
-              className="align-middle w-[75%] max-h-48 sm:h-12rem mx-auto rounded-lg shadow-lg object-cover"
-            />
-            <div className="flex flex-col justify-evenly">
-              <Typography variant="h5" component="h3" gutterBottom>
-                {item.name}
-              </Typography>
+            <div className="flex justify-center">
+              <div className="w-11/12 overflow-hidden">
+                <img
+                  src={item.pic}
+                  alt={item.name}
+                  className="align-middle w-full max-h-72 sm:h-18rem mx-auto rounded-2xl shadow-2xl object-cover"
+                />
+              </div>
+            </div>
+            <div className="flex justify-evenly mt-60 mb-30">
               <Typography
                 variant="h5"
                 component="h3"
                 gutterBottom
-                className="text-left"
+                sx={{ fontSize: "large", fontWeight: "bold" }}
               >
-                {item.phone}
+                {item.name}
               </Typography>
             </div>
-            <div className="text-left pl-4">
-              <h2>เวลาที่เปิด</h2>
-              <ol>
-                {item.time.map((step: string, index: number) => (
-                  <li key={index} className="mr-4">
-                    {index + 1}. {step}
-                  </li>
-                ))}
-              </ol>
+            <div className="m-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
+              <div className="flex flex-col text-left pl-4">
+                <h2 className="text-lg">เวลาที่เปิด</h2>
+                <ol>
+                  {item.time.map((step: string, index: number) => (
+                    <li key={index} className="mr-4">
+                      {index + 1}. {step}
+                    </li>
+                  ))}
+                </ol>
+              </div>
             </div>
-            <div className="text-left pl-4">
-              <h2>คลาสต่างๆ</h2>
-              <ol>
-                {item.extraclass.map((step: string, index: number) => (
-                  <li key={index} className="mr-4">
-                    {index + 1}. {step}
-                  </li>
-                ))}
-              </ol>
+            <div className="m-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
+              <div className="flex flex-col text-left pl-4">
+                <h2 className="text-lg">คลาสที่เปิดสอน</h2>
+                <ol>
+                  {item.extraclass.map((step: string, index: number) => (
+                    <li key={index} className="mr-4">
+                      {index + 1}. {step}
+                    </li>
+                  ))}
+                </ol>
+              </div>
             </div>
           </Box>
           <div className="flex justify-center">

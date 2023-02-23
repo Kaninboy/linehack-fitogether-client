@@ -1,4 +1,3 @@
-import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import { Box, Divider, IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +22,6 @@ export function Home() {
     bmi: number;
   } | null>(null);
   const [loading, setLoading] = useState(true);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [foodData, setFoodData] = useState<Item[]>([]);
   const navigate = useNavigate();
   const items: Item[] = foodData;
@@ -62,24 +60,6 @@ export function Home() {
     );
   }
 
-  const currentCard = items[currentIndex];
-
-  const handleNext = () => {
-    if (currentIndex === items.length - 1) {
-      setCurrentIndex(0);
-    } else {
-      setCurrentIndex(currentIndex + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentIndex === 0) {
-      setCurrentIndex(items.length - 1);
-    } else {
-      setCurrentIndex(currentIndex - 1);
-    }
-  };
-
   const handleNavigateCard = (card: Item) => {
     let currentCard = card;
     navigate("/card", { state: { currentCard } });
@@ -87,25 +67,39 @@ export function Home() {
 
   return (
     <div className="text-center font-line bg-greyLight min-h-screen">
-      <h1 className="font-bold text-2xl p-10 pb-5">ใน 1 วันคุณเผาผลาญพลังงาน</h1>
+      <h1 className="font-bold text-2xl p-10 pb-5">
+        ใน 1 วันคุณเผาผลาญพลังงาน
+      </h1>
       <ul className="text-lg">
-        <li className="m-5 font-bold">การเผาผลาญขั้นต่ำ BMR</li>
         <li className="m-5 flex justify-center">
-          <div className="rounded-md w-3/5 h-10 p-1 border-2 border-blueDark bg-blueLight bg-opacity-50 text-blueDark font-bold">
-            {userData?.bmr} kcal/วัน
+          <div className="rounded-md w-4/5 p-2 border-2 border-blueDark bg-blueLight bg-opacity-30 text-blueDark font-bold">
+            การเผาผลาญขั้นต่ำ BMR
+            <div className="my-5 flex justify-center">
+              <span className="rounded-md w-4/5 h-10 p-1 border-2 border-blueDark bg-white text-blueDark font-bold">
+                {userData?.bmr} <span className="text-greyMain">kcal/วัน</span>
+              </span>
+            </div>
           </div>
         </li>
-        <li className="m-5 font-bold">การเผาผลาญเมื่อทำกิจกรรม TDEE</li>
         <li className="m-5 flex justify-center">
-          <div className="rounded-md w-3/5 h-10 p-1 border-2 border-blueDark bg-blueLight bg-opacity-50 text-blueDark font-bold">
-            {userData?.tdee} kcal/วัน
+          <div className="rounded-md w-4/5 p-2 border-2 border-blueDark bg-blueLight bg-opacity-30 text-blueDark font-bold">
+            การเผาผลาญเมื่อทำกิจกรรม TDEE
+            <div className="my-5 flex justify-center">
+              <span className="rounded-md w-4/5 h-10 p-1 border-2 border-blueDark bg-white text-blueDark font-bold">
+                {userData?.tdee} <span className="text-greyMain">kcal/วัน</span>
+              </span>
+            </div>
           </div>
         </li>
-        <li className="m-8 font-bold">
-          ค่า BMI ของคุณ
-          <span className="rounded-md w-3/5 h-10 m-3 p-2 border-2 border-blueDark bg-blueLight bg-opacity-50 text-blueDark">
-            {userData?.bmi}
-          </span>
+        <li className="m-5 flex justify-center">
+          <div className="rounded-md w-4/5 p-2 border-2 border-blueDark bg-blueLight bg-opacity-30 text-blueDark font-bold">
+            ค่า BMI ของคุณคือ
+            <div className="my-5 flex justify-center">
+              <span className="rounded-md w-4/5 h-10 p-1 border-2 border-blueDark bg-white text-blueDark font-bold">
+                {userData?.bmi}
+              </span>
+            </div>
+          </div>
         </li>
       </ul>
       <Divider></Divider>
@@ -123,10 +117,7 @@ export function Home() {
           }}
         >
           {items.map((card) => (
-            <div
-              className="m-5 w-75"
-              onClick={() => handleNavigateCard(card)}
-            >
+            <div className="m-5 w-75" onClick={() => handleNavigateCard(card)}>
               <FoodCard {...card} />
             </div>
           ))}

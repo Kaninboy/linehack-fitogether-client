@@ -13,7 +13,14 @@ const CardDisplay: React.FC = () => {
   };
 
   return (
-    <div className="text-xs bg-greyLight min-h-screen">
+    <div
+      className="text-xs bg-cover bg-center min-h-screen"
+      style={{
+        backgroundImage: `url(https://storage.googleapis.com/fitogether-me/assistanceFood/Stone%20backdrops%20_%20Backdrop%20_Palermo_%20Buy%20from%20e-shop.jpg)`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
+    >
       {item ? (
         <Box className="font-line">
           <div className="flex items-center">
@@ -28,12 +35,12 @@ const CardDisplay: React.FC = () => {
                 <img
                   src={item.pic}
                   alt={item.name}
-                  className="align-middle w-full max-h-72 sm:h-18rem mx-auto rounded-lg shadow-2xl object-cover"
+                  className="align-middle w-full max-h-72 sm:h-18rem mx-auto rounded-2xl shadow-2xl object-cover"
                 />
                 <Typography
-                  variant="body2"
+                  variant="h5"
                   component="h3"
-                  className="absolute -left-[32px] top-[20px] -rotate-45 text-white font-bold bg-greyMain opacity-80  w-32"
+                  className="absolute -left-[54px] top-[25px] -rotate-45 text-white font-bold bg-orange-400 opacity-90 w-48"
                 >
                   {item.calories} kcal
                 </Typography>
@@ -44,7 +51,7 @@ const CardDisplay: React.FC = () => {
                 variant="h5"
                 component="h3"
                 gutterBottom
-                sx={{ fontSize: "xx-large" , fontWeight: "bold"}}
+                sx={{ fontSize: "xx-large", fontWeight: "bold" }}
               >
                 {item.name}
               </Typography>

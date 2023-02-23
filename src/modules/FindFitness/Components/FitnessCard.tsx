@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, Typography } from "@mui/material";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 
 interface FitnessCardProps {
   id: string;
@@ -33,18 +33,19 @@ const FitnessCard: React.FC<FitnessCardProps> = ({
   extraclass,
 }) => {
   return (
-    <Card>
+    <Card sx={{ display: "flex", justifyContent:"space-between", height: 151 }}>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
-          {name}
-        </Typography>
-        <Typography gutterBottom variant="body1" component="h2">
-          monthlyfee: {monthlyfee ? monthlyfee : "-"}
-        </Typography>
-        <Typography gutterBottom variant="body1" component="h2">
-          extraclass: {extraclass ? extraclass : "-"}
-        </Typography>
+        <ul className="font-line">
+          <li className="font-bold mb-1 text-lg">{name}</li>
+          <li className="text-xs">ค่าบริการเดือนละ {monthlyfee ? monthlyfee : "-"} บาท</li>
+        </ul>
       </CardContent>
+      <CardMedia
+        component="img"
+        sx={{ width: 151 }}
+        image={pic}
+        alt="Picture of the gym"
+      />
     </Card>
   );
 };
