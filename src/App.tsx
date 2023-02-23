@@ -13,6 +13,7 @@ import { FitnessQR } from "./modules/FitnessQR/FitnessQR";
 import { FitnessList } from "./modules/FindFitness/Pages/FitnessList";
 import { FitnessDetail } from "./modules/FindFitness/Pages/FitnessDetail";
 import { PaymentComplete } from "./modules/Payment/pages/PaymentComplete";
+import { CalMemo } from "./modules/CalMemo";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/fitnesslist" element={<FitnessList />} />
           <Route path="/fitness/:id" element={<FitnessDetail />} />
           <Route path="/fitnessqr" element={<FitnessQR />} />
+          <Route path="/calmemo" element={<CalMemo />} />
           <Route path="/payment/success" element={<PaymentComplete />} />
           <Route path="*" element={<p>Not Found</p>} />
         </Routes>
