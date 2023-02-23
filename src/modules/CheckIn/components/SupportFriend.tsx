@@ -1,6 +1,6 @@
 import { IconButton, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { api } from "../../../common/api";
 
 export const SupportFriend = () => {
@@ -31,6 +31,7 @@ export const SupportFriend = () => {
   if (!friend) return null;
   return (
     <div className="w-full">
+      <Toaster />
       <div className="p-4 flex gap-4 w-full">
         <div className="pt-1 flex-shrink-0">
           <img
