@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { api } from "../../common/api";
 
 export function FindFitness() {
@@ -24,14 +24,20 @@ export function FindFitness() {
       </div>
       {/* display map and let user click to edit their location */}
       <div className="m-10 text-center color-blueDark">
-        <Button
-          variant="contained"
-          sx={{ bgcolor: "#0F044C", "&:hover": { backgroundColor: "#0F044C" } }}
-          fullWidth
-          onClick={onSubmit}
-        >
-          ตกลง
-        </Button>
+        <Link to="/fitnesslist">
+          {/* Temporary Link to FitnessList, remove when location feature is completed */}
+          <Button
+            variant="contained"
+            sx={{
+              bgcolor: "#0F044C",
+              "&:hover": { backgroundColor: "#0F044C" },
+            }}
+            fullWidth
+            onClick={onSubmit}
+          >
+            ตกลง
+          </Button>
+        </Link>
       </div>
     </div>
   );
