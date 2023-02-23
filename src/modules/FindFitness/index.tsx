@@ -9,9 +9,9 @@ export function FindFitness() {
 
   // get their peronalLocation first
   const onSubmit = async () => {
-    await api.post("/assistance/createuser", {
-      personalLocation,
-    });
+    // await api.post("/assistance/createuser", {
+    //   personalLocation
+    // });
     navigate("/fitnesslist");
   };
 

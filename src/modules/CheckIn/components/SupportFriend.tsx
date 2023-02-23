@@ -60,13 +60,13 @@ export const SupportFriend = () => {
                 color="primary"
                 aria-label="upload picture"
                 component="label"
-                onClick={() => {
-                  api.post("/engage/friend", {
+                onClick={async () => {
+                  await api.post("/engage/friend", {
                     friendId: friend.userId,
                     message,
                   });
-                  setSent(true);
                   toast.success("ส่งข้อความสำเร็จ!");
+                  setSent(true);
                 }}
                 disabled={sent}
               >
