@@ -36,7 +36,9 @@ export const UserProvider = (props: UserProviderProps) => {
             : "1657899416-ED4zN1Pr",
       });
       if (!liff.isLoggedIn()) {
-        liff.login();
+        liff.login({
+          redirectUri: window.location.href,
+        });
       }
 
       const profile = await liff.getProfile();
@@ -47,7 +49,7 @@ export const UserProvider = (props: UserProviderProps) => {
         () => {
           setIsReady(true);
         },
-        1800 - diff > 0 ? 1800 - diff : 0
+        1650 - diff > 0 ? 1650 - diff : 0
       );
     }
     init();

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../../../common/api";
 import FitnessCard from "../Components/FitnessCard";
 
-interface Item {
+export interface Fitness {
   id: string;
   name: string;
   lat: string;
@@ -22,17 +22,17 @@ interface Item {
 
 export function FitnessList() {
   const [loading, setLoading] = useState(true);
-  const [fitnessData, setFitnessData] = useState<Item[]>([]);
-  const items: Item[] = fitnessData;
+  const [fitnessData, setFitnessData] = useState<Fitness[]>([]);
+  const items: Fitness[] = fitnessData;
   const navigate = useNavigate();
 
   useEffect(() => {
     const loadFitness = async () => {
       const res = await api.get("/fitness");
       setFitnessData(res.data);
+      setLoading(false);
     };
     loadFitness();
-    setLoading(false);
   }, []);
 
   if (loading) {
@@ -49,9 +49,8 @@ export function FitnessList() {
     );
   }
 
-  const handleNavigateCard = (card: Item) => {
-    let currentCard = card;
-    navigate("/fitnessdetail", { state: { currentCard } });
+  const handleNavigateCard = (card: Fitness) => {
+    navigate(`/fitness/${card.id}`);
   };
 
   return (
