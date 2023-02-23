@@ -80,6 +80,9 @@ export const CalMemo = () => {
   return (
     <div>
       <form className="flex flex-col gap-4 p-6">
+        <h1 className="text-2xl font-bold text-blueDark text-center">
+          บันทึกแคลอรี่
+        </h1>
         <TextField
           label="วันที่"
           variant="outlined"
@@ -101,11 +104,7 @@ export const CalMemo = () => {
           size="large"
           disabled={!!imageUrl}
         >
-          {imageUrl
-            ? "อัปโหลดเรียบร้อย"
-            : submitting.current
-            ? "กำลังประมวลผล..."
-            : "อัปโหลดรูปภาพ"}
+          {imageUrl ? "อัปโหลดเรียบร้อย" : "อัปโหลดภาพประกอบ"}
           <input
             type="file"
             accept="image/*"
@@ -114,6 +113,7 @@ export const CalMemo = () => {
             capture="environment"
           />
         </Button>
+        {imageUrl && <img className="h-60 object-contain" src={imageUrl} />}
         <div className="flex flex-end">
           <button
             className="flex justify-center items-center gap-2 w-full text-white bg-blueDark py-3 px-4 rounded-md"
