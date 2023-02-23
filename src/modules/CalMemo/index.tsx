@@ -82,7 +82,13 @@ export const CalMemo = () => {
           disabled={!!imageUrl}
         >
           {imageUrl ? "อัปโหลดเรียบร้อย" : "อัปโหลดรูปภาพ"}
-          <input type="file" accept="image/*" hidden onChange={handleUpload} />
+          <input
+            type="file"
+            accept="image/*"
+            hidden
+            onChange={handleUpload}
+            capture="environment"
+          />
         </Button>
         <div className="flex flex-end">
           <button
