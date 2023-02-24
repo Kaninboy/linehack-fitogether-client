@@ -9,7 +9,7 @@ interface FitnessCardProps {
   location_api: string;
   monthlyfee: string;
   facebook_name: string;
-  facbook_link: string;
+  facebook_link: string;
   pic: string;
   phone: string;
   web_api: string;
@@ -25,7 +25,7 @@ const FitnessCard: React.FC<FitnessCardProps> = ({
   location_api,
   monthlyfee,
   facebook_name,
-  facbook_link,
+  facebook_link,
   pic,
   phone,
   web_api,

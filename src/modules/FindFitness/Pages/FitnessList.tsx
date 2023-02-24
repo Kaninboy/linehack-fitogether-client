@@ -12,7 +12,7 @@ export interface Fitness {
   location_api: string;
   monthlyfee: string;
   facebook_name: string;
-  facbook_link: string;
+  facebook_link: string;
   pic: string;
   phone: string;
   web_api: string;

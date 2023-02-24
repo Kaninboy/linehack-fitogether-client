@@ -7,7 +7,6 @@ const CardDisplay: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const item = location.state.currentCard;
-
   const handleBack = () => {
     navigate(-1);
   };
