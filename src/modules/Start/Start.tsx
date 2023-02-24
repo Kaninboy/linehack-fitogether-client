@@ -38,7 +38,7 @@ export function Start() {
       height,
       activities,
     });
-    navigate("/setnoti");
+    navigate("/");
   };
 
   return (

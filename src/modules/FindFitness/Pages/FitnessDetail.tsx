@@ -45,7 +45,7 @@ export function FitnessDetail() {
   if (loading) return null;
   return (
     <div
-      className="text-xs bg-cover bg-center min-h-screen"
+      className="flex flex-col h-screen text-xs bg-cover bg-center font-line"
       // style={{
       //   backgroundImage: `url(https://storage.googleapis.com/fitogether-me/assistanceFood/Stone%20backdrops%20_%20Backdrop%20_Palermo_%20Buy%20from%20e-shop.jpg)`,
       //   backgroundPosition: "center",
@@ -53,24 +53,24 @@ export function FitnessDetail() {
       // }}
     >
       {item ? (
-        <Box className="font-line">
-          <div className="flex items-center">
-            <IconButton onClick={() => navigate("/fitnesslist")}>
-              <ArrowBack />
-            </IconButton>
-            <p>กลับไปหน้าฟิตเนสแนะนำ</p>
-          </div>
-          <Box sx={{ mt: 1, textAlign: "center" }} className="space-y-5">
+        <>
+          <div>
+            <div className="flex items-center">
+              <IconButton onClick={() => navigate("/fitnesslist")}>
+                <ArrowBack />
+              </IconButton>
+              <p>กลับไปหน้าฟิตเนสแนะนำ</p>
+            </div>
             <div className="flex justify-center">
               <div className="w-11/12 overflow-hidden">
                 <img
                   src={item.pic}
                   alt={item.name}
-                  className="align-middle w-full max-h-72 sm:h-18rem mx-auto rounded-2xl shadow-2xl object-cover"
+                  className="align-middle w-full max-h-52 sm:h-18rem mx-auto rounded-2xl shadow-2xl object-cover"
                 />
               </div>
             </div>
-            <div className="flex justify-evenly mt-60 mb-30">
+            <div className="flex justify-evenly mt-4 pb-2 shadow-md">
               <Typography
                 variant="h5"
                 component="h3"
@@ -80,9 +80,11 @@ export function FitnessDetail() {
                 {item.name}
               </Typography>
             </div>
-            <div className="m-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
+          </div>
+          <div className="mt-1 text-center flex flex-col gap-3 py-2 overflow-y-scroll overflow-x-hidden shadow-sm">
+            <div className="mx-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
               <div className="flex flex-col text-left pl-4">
-                <h2 className="text-lg">เวลาที่เปิด</h2>
+                <h2 className="text-lg font-bold">เวลาที่เปิด</h2>
                 <ol>
                   {item.time.map((step: string, index: number) => (
                     <li key={index} className="mr-4">
@@ -92,9 +94,9 @@ export function FitnessDetail() {
                 </ol>
               </div>
             </div>
-            <div className="m-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
+            <div className="mx-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
               <div className="flex flex-col text-left pl-4">
-                <h2 className="text-lg">ตัวอย่างคลาสที่เปิดสอน</h2>
+                <h2 className="text-lg font-bold">ตัวอย่างคลาสที่เปิดสอน</h2>
                 <ol>
                   {item.extraclass.map((step: string, index: number) => (
                     <li key={index} className="mr-4">
@@ -104,16 +106,30 @@ export function FitnessDetail() {
                 </ol>
               </div>
             </div>
-            <div className="m-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
+            <div className="mx-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
               <div className="flex flex-col text-left pl-4">
-                <h2 className="text-lg">ช่องทางการติดต่อ</h2>
+                <h2 className="text-lg font-bold">ค่าบริการ</h2>
+                <ol>
+                  <li className="mr-4">
+                    เดือนละ{" "}
+                    {new Intl.NumberFormat("th-TH", {
+                      currency: "THB",
+                    }).format(parseInt(item.monthlyfee, 10))}{" "}
+                    บาท
+                  </li>
+                </ol>
+              </div>
+            </div>
+            <div className="mx-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
+              <div className="flex flex-col text-left pl-4">
+                <h2 className="text-lg font-bold">ช่องทางการติดต่อ</h2>
                 <ul>
                   <li>
                     {" "}
                     <Link
                       to={`tel:${item.phone}`}
                       onClick={handleClick}
-                      className="inline-flex items-center px-3 py-1 bg-white border border-transparent rounded-full shadow-sm text-base font-medium text-gray-700 hover:bg-gray-50"
+                      className="inline-flex items-center px-3 py-1 bg-white border border-transparent rounded-full shadow-sm text-sm my-1 font-medium text-gray-700 hover:bg-gray-50"
                     >
                       <PhoneIcon className="mr-2" />
                       <span>{item.phone}</span>
@@ -123,8 +139,7 @@ export function FitnessDetail() {
                     {" "}
                     <Link
                       to={`${item.facebook_link}`}
-                      onClick={handleClick}
-                      className="inline-flex items-center px-3 py-1 bg-white border border-transparent rounded-full shadow-sm text-base font-medium text-gray-700 hover:bg-gray-50"
+                      className="inline-flex items-center px-3 py-1 bg-white border border-transparent rounded-full shadow-sm text-sm my-1 font-medium text-gray-700 hover:bg-gray-50"
                     >
                       <FacebookIcon className="mr-2" />
                       <span>{item.facebook_name}</span>
@@ -133,8 +148,6 @@ export function FitnessDetail() {
                 </ul>
               </div>
             </div>
-          </Box>
-          <div className="flex flex-col justify-center m-6 gap-2">
             <Link
               to={item.web_api}
               className="flex w-full py-2"
@@ -144,6 +157,8 @@ export function FitnessDetail() {
                 เข้าสู่เว็บไซต์ทางการของฟิตเนส !
               </button>
             </Link>
+          </div>
+          <div className="flex flex-col justify-center m-6 my-3 gap-2">
             <button
               className="flex flex-row gap-1 justify-center items-center bg-blueLight text-white text-sm px-10 py-2 rounded-lg"
               onClick={handleShare}
@@ -185,7 +200,7 @@ export function FitnessDetail() {
               สมัครสมาชิก
             </button>
           </div>
-        </Box>
+        </>
       ) : (
         <Box>
           <IconButton onClick={() => navigate("/fitnesslist")}>

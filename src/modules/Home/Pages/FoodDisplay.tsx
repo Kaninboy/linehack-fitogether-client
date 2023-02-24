@@ -45,17 +45,10 @@ const CardDisplay: React.FC = () => {
                 </Typography>
               </div>
             </div>
-            <div className="flex justify-evenly mt-60 mb-30">
-              <Typography
-                variant="h5"
-                component="h3"
-                gutterBottom
-                sx={{ fontSize: "xx-large", fontWeight: "bold" }}
-              >
-                {item.name}
-              </Typography>
+            <div className="flex justify-center text-3xl font-bold text-blueDark">
+              {item.name}
             </div>
-            <div className="m-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
+            <div className="m-5 py-3 w-11/12 bg-white opacity-80 rounded-lg shadow-lg">
               <div className="flex flex-col text-left pl-4">
                 <h2 className="text-lg">ส่วนผสม</h2>
                 <ol>
@@ -67,7 +60,7 @@ const CardDisplay: React.FC = () => {
                 </ol>
               </div>
             </div>
-            <div className="m-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
+            <div className="m-5 py-3 w-11/12 bg-white opacity-80 rounded-lg shadow-lg">
               <div className="flex flex-col text-left pl-4">
                 <h2 className="text-lg">ขั้นตอนและวิธีการทำ</h2>
                 <ol>

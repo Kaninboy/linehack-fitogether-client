@@ -41,24 +41,21 @@ export function FitnessBuy() {
 
   if (loading) return null;
   return (
-    <div className="text-xs">
-      <Box className="font-line">
-        <div className="flex items-center">
-          <IconButton onClick={() => navigate(`/fitness/${id}`)}>
-            <ArrowBack />
-          </IconButton>
-          <p>ย้อนกลับ</p>
-        </div>
-        <Box sx={{ mt: 1, textAlign: "center" }} className="space-y-5">
-          <button
-            className="flex sm:flex-row flex-col sm:gap-2 justify-center items-center bg-lineGreen text-white text-sm px-10 py-2 rounded-lg"
-            onClick={handleLinePayPurchase}
-          >
-            สมัครสมาชิกผ่าน{" "}
-            <img className="h-8" src="/images/linepay-logo.png" alt="linepay" />
-          </button>
-        </Box>
-      </Box>
+    <div className="flex flex-col text-xs">
+      <div className="flex items-center">
+        <IconButton onClick={() => navigate(`/fitness/${id}`)}>
+          <ArrowBack />
+        </IconButton>
+        <p>กลับไปดูรายละเอียดเพิ่มเติม</p>
+      </div>
+
+      <button
+        className="flex sm:flex-row flex-col  mx-4 sm:gap-2 justify-center items-center bg-lineGreen text-white text-sm px-10 py-2 rounded-lg"
+        onClick={handleLinePayPurchase}
+      >
+        จ่ายผ่าน{" "}
+        <img className="h-8" src="/images/linepay-logo.png" alt="linepay" />
+      </button>
     </div>
   );
 }

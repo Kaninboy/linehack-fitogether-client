@@ -33,11 +33,21 @@ const FitnessCard: React.FC<FitnessCardProps> = ({
   extraclass,
 }) => {
   return (
-    <Card sx={{ display: "flex", justifyContent:"space-between", height: 151 }}>
+    <Card
+      sx={{ display: "flex", justifyContent: "space-between", height: 151 }}
+    >
       <CardContent>
         <ul className="font-line">
           <li className="font-bold mb-1 text-lg">{name}</li>
-          <li className="text-xs">ค่าบริการเดือนละ {monthlyfee ? monthlyfee : "-"} บาท</li>
+          <li className="text-xs">
+            ค่าบริการเดือนละ{" "}
+            {monthlyfee
+              ? new Intl.NumberFormat("th-TH", {
+                  currency: "THB",
+                }).format(parseInt(monthlyfee, 10))
+              : "-"}{" "}
+            บาท
+          </li>
         </ul>
       </CardContent>
       <CardMedia

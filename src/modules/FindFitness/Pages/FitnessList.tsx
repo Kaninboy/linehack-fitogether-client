@@ -44,7 +44,7 @@ export function FitnessList() {
         <h1 className="text-xl text-center mt-10 font-bold">
           แนะนำฟิตเนสสำหรับคุณ !
         </h1>
-        <h2 className="text-2xl my-20">-- ไม่มีรายการฟิตเนสที่จะแสดง --</h2>
+        {/* <h2 className="text-2xl my-20">-- ไม่มีรายการฟิตเนสที่จะแสดง --</h2> */}
       </div>
     );
   }
@@ -56,11 +56,10 @@ export function FitnessList() {
   return (
     <div className="font-line bg-greyLight min-h-screen">
       <div className="p-5"></div>
-      <h1 className="mx-10 py-3 text-xl text-center font-bold bg-blueDark text-white">
-        แนะนำฟิตเนสสำหรับคุณ !
+      <h1 className="mx-10 mb-6 py-3 text-xl text-center font-bold bg-blueDark text-white">
+        ฟิตเนสแนะนำสำหรับคุณ !
       </h1>
       <ul>
-        <li className="text-lg mt-10 pl-5">ฟิตเนสแนะนำ: </li>
         <Box
           sx={{
             display: "flex",
@@ -72,7 +71,7 @@ export function FitnessList() {
         >
           {items.map((card) => (
             <div
-              className="m-5 w-11/12"
+              className="m-2 w-11/12"
               onClick={() => handleNavigateCard(card)}
             >
               <FitnessCard {...card} />

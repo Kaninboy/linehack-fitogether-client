@@ -62,11 +62,12 @@ export const CalMemo = () => {
       !dateRef.current
     ) {
       toast.error("กรุณากรอกข้อมูลให้ครบถ้วน");
+      submitting.current = false;
       return;
     }
     await api.post("/calmemo", {
       imageUrl,
-      memo: memoRef.current.value,
+      memo: memoRef.current.value || "-",
       calories: calorieRef.current.value,
       datetime: new Date(dateRef.current.value).toISOString(),
     });
@@ -81,7 +82,7 @@ export const CalMemo = () => {
     <div>
       <form className="flex flex-col gap-4 p-6">
         <h1 className="text-2xl font-bold text-blueDark text-center">
-          Calodiary
+          Caldiary
         </h1>
         <TextField
           label="วันที่"
@@ -136,7 +137,7 @@ export const CalMemo = () => {
                     d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"
                   />
                 </svg>
-                อัปโหลดภาพประกอบ
+                เพิ่มภาพประกอบ
               </div>
             )}
             <input

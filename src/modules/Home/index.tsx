@@ -28,8 +28,13 @@ export function Home() {
 
   useEffect(() => {
     const load = async () => {
-      const res = await api.get("/assistance/getuserdata");
-      setUserData(res.data);
+      try {
+        const res = await api.get("/assistance/getuserdata");
+        setUserData(res.data);
+      } catch (error) {
+        console.log(error);
+        navigate("/start");
+      }
     };
     load();
 
@@ -41,49 +46,53 @@ export function Home() {
     setLoading(false);
   }, []);
 
-  if (loading) {
-    return <p>Loading</p>;
-  }
-  if (foodData.length === 0) {
+  if (loading || foodData.length === 0) {
     return (
-      <div className="text-center font-line bg-greyLight min-h-screen">
-      <h1 className="font-bold text-2xl p-10 pb-5">
-        ใน 1 วันคุณเผาผลาญพลังงาน
-      </h1>
-      <ul className="text-lg">
-        <li className="m-5 flex justify-center">
-          <div className="rounded-md w-4/5 p-2 border-2 border-blueDark bg-blueLight bg-opacity-30 text-blueDark font-bold">
-            การเผาผลาญขั้นต่ำ BMR
-            <div className="my-5 flex justify-center">
-              <span className="rounded-md w-4/5 h-10 p-1 border-2 border-blueDark bg-white text-blueDark font-bold">
-                {userData?.bmr} <span className="text-greyMain">kcal/วัน</span>
-              </span>
+      <div
+        className="text-xs bg-cover bg-center text-center font-line bg-greyLight min-h-screen"
+        style={{
+          backgroundImage: `url(https://storage.googleapis.com/fitogether-me/assistanceFood/Stone%20backdrops%20_%20Backdrop%20_Palermo_%20Buy%20from%20e-shop.jpg)`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+      >
+        <h1 className="font-bold text-2xl p-6 pb-1 text-blueDark">
+          ใน 1 วันคุณเผาผลาญพลังงาน
+        </h1>
+        <ul className="text-lg">
+          <li className="m-3 mx-6 flex justify-center">
+            <div className="rounded-md w-4/5 p-1 border-2 border-blueDark backdrop-blur-lg  bg-white bg-opacity-30 text-blueDark font-bold">
+              การเผาผลาญขั้นต่ำ BMR
+              <div className="my-2 flex justify-center">
+                <span className="rounded-md w-4/5 h-10 p-1 border-2 border-blueDark bg-white text-blueDark font-bold">
+                  ...
+                  <span className="text-greyMain">kcal/วัน</span>
+                </span>
+              </div>
             </div>
-          </div>
-        </li>
-        <li className="m-5 flex justify-center">
-          <div className="rounded-md w-4/5 p-2 border-2 border-blueDark bg-blueLight bg-opacity-30 text-blueDark font-bold">
-            การเผาผลาญเมื่อทำกิจกรรม TDEE
-            <div className="my-5 flex justify-center">
-              <span className="rounded-md w-4/5 h-10 p-1 border-2 border-blueDark bg-white text-blueDark font-bold">
-                {userData?.tdee} <span className="text-greyMain">kcal/วัน</span>
-              </span>
+          </li>
+          <li className="m-3 mx-6 flex justify-center">
+            <div className="rounded-md w-4/5 p-1 border-2 border-blueDark backdrop-blur-lg bg-opacity-30 text-blueDark font-bold">
+              การเผาผลาญเมื่อทำกิจกรรม TDEE
+              <div className="my-2 flex justify-center">
+                <span className="rounded-md w-4/5 h-10 p-1 border-2 border-blueDark bg-white text-blueDark font-bold">
+                  ...
+                  <span className="text-greyMain">kcal/วัน</span>
+                </span>
+              </div>
             </div>
-          </div>
-        </li>
-        <li className="m-5 flex justify-center">
-          <div className="rounded-md w-4/5 p-2 border-2 border-blueDark bg-blueLight bg-opacity-30 text-blueDark font-bold">
-            ค่า BMI ของคุณคือ
-            <div className="my-5 flex justify-center">
-              <span className="rounded-md w-4/5 h-10 p-1 border-2 border-blueDark bg-white text-blueDark font-bold">
-                {userData?.bmi}
-              </span>
+          </li>
+          <li className="m-3 mx-6 flex justify-center">
+            <div className="rounded-md w-4/5 p-1 border-2 border-blueDark backdrop-blur-lg bg-opacity-30 text-blueDark font-bold">
+              ค่า BMI ของคุณคือ
+              <div className="my-2 flex justify-center">
+                <span className="rounded-md w-4/5 h-10 p-1 border-2 border-blueDark bg-white text-blueDark font-bold">
+                  ...
+                </span>
+              </div>
             </div>
-          </div>
-        </li>
-      </ul>
-      <Divider></Divider>
-        <h2 className="text-2xl my-20">-- ไม่มีเมนูอาหารที่จะแสดง --</h2>
+          </li>
+        </ul>
       </div>
     );
   }
@@ -94,35 +103,44 @@ export function Home() {
   };
 
   return (
-    <div className="text-center font-line bg-greyLight min-h-screen">
-      <h1 className="font-bold text-2xl p-10 pb-5">
+    <div
+      className="text-xs bg-cover bg-center text-center font-line bg-greyLight min-h-screen"
+      style={{
+        backgroundImage: `url(https://storage.googleapis.com/fitogether-me/assistanceFood/Stone%20backdrops%20_%20Backdrop%20_Palermo_%20Buy%20from%20e-shop.jpg)`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
+    >
+      <h1 className="font-bold text-2xl p-6 pb-1 text-blueDark">
         ใน 1 วันคุณเผาผลาญพลังงาน
       </h1>
       <ul className="text-lg">
-        <li className="m-5 flex justify-center">
-          <div className="rounded-md w-4/5 p-2 border-2 border-blueDark bg-blueLight bg-opacity-30 text-blueDark font-bold">
+        <li className="m-3 mx-6 flex justify-center">
+          <div className="rounded-md w-4/5 p-1 border-2 border-blueDark backdrop-blur-lg  bg-white bg-opacity-30 text-blueDark font-bold">
             การเผาผลาญขั้นต่ำ BMR
-            <div className="my-5 flex justify-center">
+            <div className="my-2 flex justify-center">
               <span className="rounded-md w-4/5 h-10 p-1 border-2 border-blueDark bg-white text-blueDark font-bold">
-                {userData?.bmr} <span className="text-greyMain">kcal/วัน</span>
+                {Math.round(userData?.bmr || 0)}{" "}
+                <span className="text-greyMain">kcal/วัน</span>
               </span>
             </div>
           </div>
         </li>
-        <li className="m-5 flex justify-center">
-          <div className="rounded-md w-4/5 p-2 border-2 border-blueDark bg-blueLight bg-opacity-30 text-blueDark font-bold">
+        <li className="m-3 mx-6 flex justify-center">
+          <div className="rounded-md w-4/5 p-1 border-2 border-blueDark backdrop-blur-lg bg-opacity-30 text-blueDark font-bold">
             การเผาผลาญเมื่อทำกิจกรรม TDEE
-            <div className="my-5 flex justify-center">
+            <div className="my-2 flex justify-center">
               <span className="rounded-md w-4/5 h-10 p-1 border-2 border-blueDark bg-white text-blueDark font-bold">
-                {userData?.tdee} <span className="text-greyMain">kcal/วัน</span>
+                {Math.round(userData?.tdee || 0)}{" "}
+                <span className="text-greyMain">kcal/วัน</span>
               </span>
             </div>
           </div>
         </li>
-        <li className="m-5 flex justify-center">
-          <div className="rounded-md w-4/5 p-2 border-2 border-blueDark bg-blueLight bg-opacity-30 text-blueDark font-bold">
+        <li className="m-3 mx-6 flex justify-center">
+          <div className="rounded-md w-4/5 p-1 border-2 border-blueDark backdrop-blur-lg bg-opacity-30 text-blueDark font-bold">
             ค่า BMI ของคุณคือ
-            <div className="my-5 flex justify-center">
+            <div className="my-2 flex justify-center">
               <span className="rounded-md w-4/5 h-10 p-1 border-2 border-blueDark bg-white text-blueDark font-bold">
                 {userData?.bmi}
               </span>
@@ -130,9 +148,10 @@ export function Home() {
           </div>
         </li>
       </ul>
-      <Divider></Divider>
       <ul>
-        <li className="font-bold text-2xl mt-10">เมนูอาหารแนะนำวันนี้</li>
+        <li className="font-bold text-2xl mt-4 text-blueDark">
+          เมนูอาหารแนะนำวันนี้
+        </li>
 
         <Carousel
           navButtonsAlwaysVisible
@@ -141,12 +160,12 @@ export function Home() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            mt: 5,
+            mt: 0,
           }}
         >
           {items.map((card) => (
             <div
-              className="flex m-5 pb-3 h-64"
+              className="flex m-5 pb-3 h-56"
               onClick={() => handleNavigateCard(card)}
             >
               <FoodCard {...card} />
