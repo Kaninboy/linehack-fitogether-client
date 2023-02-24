@@ -46,13 +46,7 @@ export function FitnessDetail() {
   if (loading) return null;
   return (
     <div
-      className="flex flex-col h-screen text-xs bg-cover bg-center font-line"
-      // style={{
-      //   backgroundImage: `url(https://storage.googleapis.com/fitogether-me/assistanceFood/Stone%20backdrops%20_%20Backdrop%20_Palermo_%20Buy%20from%20e-shop.jpg)`,
-      //   backgroundPosition: "center",
-      //   backgroundSize: "cover",
-      // }}
-    >
+      className="flex flex-col h-screen text-xs bg-cover bg-center font-line">
       {item ? (
         <>
           <div>    
@@ -85,7 +79,7 @@ export function FitnessDetail() {
           <div
             className="mt-1 text-center flex flex-col gap-3 py-2 overflow-y-scroll overflow-x-hidden shadow-sm"
             style={{
-              backgroundImage: `url(https://cdn.discordapp.com/attachments/889898647523852369/1078591275160305694/The_Best_Gyms_in_Toronto__Where_the_Citys_Fitness_Pros_Work_Out.jpg)`,
+              backgroundImage: `url(https://storage.googleapis.com/fitogether-me/assistanceFood/dumbbell_bg.jpg)`,
               backgroundPosition: "center",
               backgroundSize: "cover",
             }}

@@ -56,7 +56,7 @@ export function FitnessList() {
   return (
     <div className="text-xs bg-cover bg-center font-line bg-greyLight min-h-screen"
     style={{
-      backgroundImage: `url(https://cdn.discordapp.com/attachments/889898647523852369/1078591275160305694/The_Best_Gyms_in_Toronto__Where_the_Citys_Fitness_Pros_Work_Out.jpg)`,
+      backgroundImage: `url(https://storage.googleapis.com/fitogether-me/assistanceFood/dumbbell_bg.jpg)`,
       backgroundPosition: "center",
       backgroundSize: "cover",
     }}>
