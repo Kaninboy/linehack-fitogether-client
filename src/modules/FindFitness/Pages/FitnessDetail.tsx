@@ -2,6 +2,7 @@ import liff from "@line/liff";
 import { ArrowBack } from "@mui/icons-material";
 import PhoneIcon from "@mui/icons-material/Phone";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import LanguageIcon from "@mui/icons-material/Language";
 import { Box, IconButton, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
@@ -45,19 +46,13 @@ export function FitnessDetail() {
   if (loading) return null;
   return (
     <div
-      className="flex flex-col h-screen text-xs bg-cover bg-center font-line"
-      // style={{
-      //   backgroundImage: `url(https://storage.googleapis.com/fitogether-me/assistanceFood/Stone%20backdrops%20_%20Backdrop%20_Palermo_%20Buy%20from%20e-shop.jpg)`,
-      //   backgroundPosition: "center",
-      //   backgroundSize: "cover",
-      // }}
-    >
+      className="flex flex-col h-screen text-xs bg-cover bg-center font-line">
       {item ? (
         <>
-          <div>
+          <div>    
             <div className="flex items-center">
               <IconButton onClick={() => navigate("/fitnesslist")}>
-                <ArrowBack />
+                <ArrowBack/>
               </IconButton>
               <p>กลับไปหน้าฟิตเนสแนะนำ</p>
             </div>
@@ -81,8 +76,15 @@ export function FitnessDetail() {
               </Typography>
             </div>
           </div>
-          <div className="mt-1 text-center flex flex-col gap-3 py-2 overflow-y-scroll overflow-x-hidden shadow-sm">
-            <div className="mx-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
+          <div
+            className="mt-1 text-center flex flex-col gap-3 py-2 overflow-y-scroll overflow-x-hidden shadow-sm"
+            style={{
+              backgroundImage: `url(https://storage.googleapis.com/fitogether-me/assistanceFood/dumbbell_bg.jpg)`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+            }}
+          >
+            <div className="mx-5 py-3 w-11/12 bg-white opacity-90 rounded-lg shadow-lg">
               <div className="flex flex-col text-left pl-4">
                 <h2 className="text-lg font-bold">เวลาที่เปิด</h2>
                 <ol>
@@ -94,7 +96,7 @@ export function FitnessDetail() {
                 </ol>
               </div>
             </div>
-            <div className="mx-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
+            <div className="mx-5 py-3 w-11/12 bg-white opacity-90 rounded-lg shadow-lg">
               <div className="flex flex-col text-left pl-4">
                 <h2 className="text-lg font-bold">ตัวอย่างคลาสที่เปิดสอน</h2>
                 <ol>
@@ -106,7 +108,7 @@ export function FitnessDetail() {
                 </ol>
               </div>
             </div>
-            <div className="mx-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
+            <div className="mx-5 py-3 w-11/12 bg-white opacity-90 rounded-lg shadow-lg">
               <div className="flex flex-col text-left pl-4">
                 <h2 className="text-lg font-bold">ค่าบริการ</h2>
                 <ol>
@@ -134,7 +136,7 @@ export function FitnessDetail() {
                 </ol>
               </div>
             </div>
-            <div className="mx-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
+            <div className="mx-5 py-3 w-11/12 bg-white opacity-90 rounded-lg shadow-lg">
               <div className="flex flex-col text-left pl-4">
                 <h2 className="text-lg font-bold">ช่องทางการติดต่อ</h2>
                 <ul>
@@ -159,18 +161,19 @@ export function FitnessDetail() {
                       <span>{item.facebook_name}</span>
                     </Link>
                   </li>
+                  <li>
+                    {" "}
+                    <Link
+                      to={item.web_api}
+                      className="inline-flex items-center px-3 py-1 bg-white border border-transparent rounded-full shadow-sm text-sm my-1 font-medium text-gray-700 hover:bg-gray-50"
+                    >
+                      <LanguageIcon className="mr-2" />
+                      <span>เข้าสู่เว็บไซต์ทางการของฟิตเนส !</span>
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </div>
-            <Link
-              to={item.web_api}
-              className="flex w-full py-2"
-              target="_blank"
-            >
-              <button className="w-full text-sm underline-offset-2 underline text-blueDark">
-                เข้าสู่เว็บไซต์ทางการของฟิตเนส !
-              </button>
-            </Link>
           </div>
           <div className="flex flex-col justify-center m-6 my-3 gap-2">
             <button
