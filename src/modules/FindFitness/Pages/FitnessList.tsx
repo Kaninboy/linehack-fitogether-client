@@ -41,7 +41,7 @@ export function FitnessList() {
   if (fitnessData.length === 0) {
     return (
       <div className="font-line">
-        <h1 className="text-xl text-center mt-10 font-bold">
+        <h1 className="text-xl text-center mt-10 font-bold rounded-md">
           แนะนำฟิตเนสสำหรับคุณ !
         </h1>
         {/* <h2 className="text-2xl my-20">-- ไม่มีรายการฟิตเนสที่จะแสดง --</h2> */}
@@ -54,7 +54,12 @@ export function FitnessList() {
   };
 
   return (
-    <div className="font-line bg-greyLight min-h-screen">
+    <div className="text-xs bg-cover bg-center font-line bg-greyLight min-h-screen"
+    style={{
+      backgroundImage: `url(https://cdn.discordapp.com/attachments/889898647523852369/1078591275160305694/The_Best_Gyms_in_Toronto__Where_the_Citys_Fitness_Pros_Work_Out.jpg)`,
+      backgroundPosition: "center",
+      backgroundSize: "cover",
+    }}>
       <div className="p-5"></div>
       <h1 className="mx-10 mb-6 py-3 text-xl text-center font-bold bg-blueDark text-white">
         ฟิตเนสแนะนำสำหรับคุณ !
@@ -71,7 +76,7 @@ export function FitnessList() {
         >
           {items.map((card) => (
             <div
-              className="m-2 w-11/12"
+              className="m-2 w-11/12 opacity-90"
               onClick={() => handleNavigateCard(card)}
             >
               <FitnessCard {...card} />
