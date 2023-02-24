@@ -5,7 +5,7 @@ export const api = axios.create({
   baseURL: "https://fitogether.me/api",
 });
 
-api.interceptors.request.use((config) => {
-  config.headers.authorization = `Bearer ${liff.getAccessToken()}`;
-  return config;
-});
+// api.interceptors.request.use((config) => {
+//   config.headers.authorization = `Bearer ${liff.getAccessToken()}`;
+//   return config;
+// });

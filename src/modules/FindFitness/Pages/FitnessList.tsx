@@ -12,7 +12,9 @@ export interface Fitness {
   lat: string;
   long: string;
   location_api: string;
-  monthlyfee: string;
+  dailyfee: number;
+  monthlyfee: number;
+  yearlyfee: number;
   facebook_name: string;
   facebook_link: string;
   pic: string;

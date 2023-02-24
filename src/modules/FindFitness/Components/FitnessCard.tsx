@@ -7,7 +7,9 @@ interface FitnessCardProps {
   lat: string;
   long: string;
   location_api: string;
-  monthlyfee: string;
+  monthlyfee: number;
+  dailyfee: number;
+  yearlyfee: number;
   facebook_name: string;
   facebook_link: string;
   pic: string;
@@ -24,6 +26,8 @@ const FitnessCard: React.FC<FitnessCardProps> = ({
   long,
   location_api,
   monthlyfee,
+  dailyfee,
+  yearlyfee,
   facebook_name,
   facebook_link,
   pic,
@@ -40,11 +44,29 @@ const FitnessCard: React.FC<FitnessCardProps> = ({
         <ul className="font-line">
           <li className="font-bold mb-1 text-lg">{name}</li>
           <li className="text-xs">
-            ค่าบริการเดือนละ{" "}
+            ค่าบริการรายวัน{" "}
+            {dailyfee
+              ? new Intl.NumberFormat("th-TH", {
+                  currency: "THB",
+                }).format(dailyfee)
+              : "-"}{" "}
+            บาท
+          </li>
+          <li className="text-xs">
+            ค่าบริการรายเดือน{" "}
             {monthlyfee
               ? new Intl.NumberFormat("th-TH", {
                   currency: "THB",
-                }).format(parseInt(monthlyfee, 10))
+                }).format(monthlyfee)
+              : "-"}{" "}
+            บาท
+          </li>
+          <li className="text-xs">
+            ค่าบริการรายปี{" "}
+            {yearlyfee
+              ? new Intl.NumberFormat("th-TH", {
+                  currency: "THB",
+                }).format(yearlyfee)
               : "-"}{" "}
             บาท
           </li>
