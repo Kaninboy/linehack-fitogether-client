@@ -1,6 +1,6 @@
 import { IconButton, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { api } from "../../../common/api";
 
 export const SupportFriend = () => {
@@ -31,6 +31,7 @@ export const SupportFriend = () => {
   if (!friend) return null;
   return (
     <div className="w-full">
+      <Toaster />
       <div className="p-4 flex gap-4 w-full">
         <div className="pt-1 flex-shrink-0">
           <img
@@ -44,7 +45,11 @@ export const SupportFriend = () => {
             <p className="text-md leading-0">
               <span className="font-bold">{friend.displayName}</span>{" "}
               ไม่ได้เช็คอินออกกำลังกายมาตั้งแต่{" "}
-              {new Date(friend.lastCheckedIn).toLocaleDateString()}
+              {new Date(friend.lastCheckedIn).toLocaleDateString("th-TH", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
             </p>
             <p className="text-md leading-0">เชิญมาเช็คอินกันไหม?</p>
             <div className="flex gap-2">
@@ -61,7 +66,7 @@ export const SupportFriend = () => {
                 aria-label="upload picture"
                 component="label"
                 onClick={async () => {
-                  await api.post("/engage/friend", {
+                  api.post("/engage/friend", {
                     friendId: friend.userId,
                     message,
                   });

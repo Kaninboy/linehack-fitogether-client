@@ -145,7 +145,10 @@ export function Home() {
           }}
         >
           {items.map((card) => (
-            <div className="m-5 w-75" onClick={() => handleNavigateCard(card)}>
+            <div
+              className="flex m-5 pb-3 h-64"
+              onClick={() => handleNavigateCard(card)}
+            >
               <FoodCard {...card} />
             </div>
           ))}

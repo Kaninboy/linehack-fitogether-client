@@ -3,7 +3,7 @@ import { ArrowBack } from "@mui/icons-material";
 import PhoneIcon from "@mui/icons-material/Phone";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import { Box, IconButton, Typography } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { api } from "../../../common/api";
@@ -12,7 +12,6 @@ import { Fitness } from "./FitnessList";
 export function FitnessDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const isPaymentReserveOngoing = useRef(false);
   const [loading, setLoading] = useState(true);
   const [item, setItem] = useState<Fitness | null>(null);
 
@@ -25,27 +24,6 @@ export function FitnessDetail() {
     };
     loadFitness();
   }, [id]);
-
-  const handleBack = () => {
-    navigate(-1);
-  };
-
-  const handleLinePayPurchase = async () => {
-    if (isPaymentReserveOngoing.current || !item) return;
-    isPaymentReserveOngoing.current = true;
-
-    const res = await api.post("/payment/reserve", {
-      fitnessId: item.id,
-    });
-    if (!res.data.url) {
-      alert("ไม่สามารถทำรายการได้");
-      isPaymentReserveOngoing.current = false;
-      return;
-    }
-
-    window.location.href = res.data.url;
-    isPaymentReserveOngoing.current = false;
-  };
 
   const handleShare = async () => {
     if (!item) return;
@@ -64,6 +42,7 @@ export function FitnessDetail() {
     window.location.href = `tel:${item?.phone}`;
   }
 
+  if (loading) return null;
   return (
     <div
       className="text-xs bg-cover bg-center min-h-screen"
@@ -76,7 +55,7 @@ export function FitnessDetail() {
       {item ? (
         <Box className="font-line">
           <div className="flex items-center">
-            <IconButton onClick={handleBack}>
+            <IconButton onClick={() => navigate("/fitnesslist")}>
               <ArrowBack />
             </IconButton>
             <p>กลับไปหน้าฟิตเนสแนะนำ</p>
@@ -186,21 +165,30 @@ export function FitnessDetail() {
               แชร์
             </button>
             <button
-              className="flex sm:flex-row flex-col sm:gap-2 justify-center items-center bg-lineGreen text-white text-sm px-10 py-2 rounded-lg"
-              onClick={handleLinePayPurchase}
+              className="flex flex-row gap-1 justify-center items-center bg-blueDark text-white text-sm px-10 py-2 rounded-lg"
+              onClick={() => navigate(`/fitness/buy/${id}`)}
             >
-              สมัครสมาชิกผ่าน{" "}
-              <img
-                className="h-8"
-                src="/images/linepay-logo.png"
-                alt="linepay"
-              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+              สมัครสมาชิก
             </button>
           </div>
         </Box>
       ) : (
         <Box>
-          <IconButton onClick={handleBack}>
+          <IconButton onClick={() => navigate("/fitnesslist")}>
             <ArrowBack />
           </IconButton>
           <Typography variant="body2" component="p">
