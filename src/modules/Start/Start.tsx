@@ -75,6 +75,7 @@ export function Start() {
             }}
             variant="outlined"
             onChange={(event) => setAge(event.target.value)}
+            value={age}
           />
         </li>
       </ul>
@@ -88,6 +89,7 @@ export function Start() {
             }}
             variant="outlined"
             onChange={(event) => setWeight(event.target.value)}
+            value={weight}
           />
         </li>
         <li>
@@ -99,6 +101,7 @@ export function Start() {
             }}
             variant="outlined"
             onChange={(event) => setHeight(event.target.value)}
+            value={height}
           />
         </li>
       </ul>
@@ -115,7 +118,10 @@ export function Start() {
               label="กิจกรรมระหว่างวัน"
               onChange={handleActivities}
             >
-              <MenuItem value={"นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย"}>
+              <MenuItem
+                value={"นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย"}
+                selected
+              >
                 นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย
               </MenuItem>
               <MenuItem value={"ออกกำลังกายเบาๆ (1-2 ครั้งต่อสัปดาห์)"}>
