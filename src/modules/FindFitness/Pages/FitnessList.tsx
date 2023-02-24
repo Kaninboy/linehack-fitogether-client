@@ -14,7 +14,7 @@ export interface Fitness {
   location_api: string;
   monthlyfee: string;
   facebook_name: string;
-  facbook_link: string;
+  facebook_link: string;
   pic: string;
   phone: string;
   web_api: string;
@@ -39,7 +39,14 @@ export function FitnessList() {
 
   if (loading) return null;
   if (fitnessData.length === 0) {
-    return <p>No Fitness to display</p>;
+    return (
+      <div className="font-line">
+        <h1 className="text-xl text-center mt-10 font-bold">
+          แนะนำฟิตเนสสำหรับคุณ !
+        </h1>
+        <h2 className="text-2xl my-20">-- ไม่มีรายการฟิตเนสที่จะแสดง --</h2>
+      </div>
+    );
   }
 
   const handleNavigateCard = (card: Fitness) => {
@@ -47,17 +54,20 @@ export function FitnessList() {
   };
 
   return (
-    <div className="font-line">
-      <h1 className="text-xl text-center mt-10 font-bold">Fitness List!</h1>
+    <div className="font-line bg-greyLight min-h-screen">
+      <div className="p-5"></div>
+      <h1 className="mx-10 py-3 text-xl text-center font-bold bg-blueDark text-white">
+        แนะนำฟิตเนสสำหรับคุณ !
+      </h1>
       <ul>
-        <li className="text-lg mt-10">ฟิตเนสแนะนำ</li>
+        <li className="text-lg mt-10 pl-5">ฟิตเนสแนะนำ: </li>
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            my: 5,
+            my: 1,
           }}
         >
           {items.map((card) => (

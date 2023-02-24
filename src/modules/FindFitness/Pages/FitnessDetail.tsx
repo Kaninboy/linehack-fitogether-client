@@ -1,5 +1,7 @@
 import liff from "@line/liff";
 import { ArrowBack } from "@mui/icons-material";
+import PhoneIcon from "@mui/icons-material/Phone";
+import FacebookIcon from "@mui/icons-material/Facebook";
 import { Box, IconButton, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
@@ -35,10 +37,21 @@ export function FitnessDetail() {
       toast.success("แชร์สำเร็จ");
     }
   };
+  console.log(item);
+  function handleClick() {
+    window.location.href = `tel:${item?.phone}`;
+  }
 
   if (loading) return null;
   return (
-    <div className="text-xs">
+    <div
+      className="text-xs bg-cover bg-center min-h-screen"
+      // style={{
+      //   backgroundImage: `url(https://storage.googleapis.com/fitogether-me/assistanceFood/Stone%20backdrops%20_%20Backdrop%20_Palermo_%20Buy%20from%20e-shop.jpg)`,
+      //   backgroundPosition: "center",
+      //   backgroundSize: "cover",
+      // }}
+    >
       {item ? (
         <Box className="font-line">
           <div className="flex items-center">
@@ -48,43 +61,77 @@ export function FitnessDetail() {
             <p>กลับไปหน้าฟิตเนสแนะนำ</p>
           </div>
           <Box sx={{ mt: 1, textAlign: "center" }} className="space-y-5">
-            <img
-              src={item.pic}
-              alt={item.name}
-              className="align-middle w-[75%] max-h-48 sm:h-12rem mx-auto rounded-lg shadow-lg object-cover"
-            />
-            <div className="flex flex-col justify-evenly">
-              <Typography variant="h5" component="h3" gutterBottom>
-                {item.name}
-              </Typography>
+            <div className="flex justify-center">
+              <div className="w-11/12 overflow-hidden">
+                <img
+                  src={item.pic}
+                  alt={item.name}
+                  className="align-middle w-full max-h-72 sm:h-18rem mx-auto rounded-2xl shadow-2xl object-cover"
+                />
+              </div>
+            </div>
+            <div className="flex justify-evenly mt-60 mb-30">
               <Typography
                 variant="h5"
                 component="h3"
                 gutterBottom
-                className="text-left"
+                sx={{ fontSize: "large", fontWeight: "bold" }}
               >
-                {item.phone}
+                {item.name}
               </Typography>
             </div>
-            <div className="text-left pl-4">
-              <h2>เวลาที่เปิด</h2>
-              <ol>
-                {item.time.map((step: string, index: number) => (
-                  <li key={index} className="mr-4">
-                    {index + 1}. {step}
-                  </li>
-                ))}
-              </ol>
+            <div className="m-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
+              <div className="flex flex-col text-left pl-4">
+                <h2 className="text-lg">เวลาที่เปิด</h2>
+                <ol>
+                  {item.time.map((step: string, index: number) => (
+                    <li key={index} className="mr-4">
+                      {index + 1}. {step}
+                    </li>
+                  ))}
+                </ol>
+              </div>
             </div>
-            <div className="text-left pl-4">
-              <h2>คลาสต่างๆ</h2>
-              <ol>
-                {item.extraclass.map((step: string, index: number) => (
-                  <li key={index} className="mr-4">
-                    {index + 1}. {step}
+            <div className="m-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
+              <div className="flex flex-col text-left pl-4">
+                <h2 className="text-lg">ตัวอย่างคลาสที่เปิดสอน</h2>
+                <ol>
+                  {item.extraclass.map((step: string, index: number) => (
+                    <li key={index} className="mr-4">
+                      {index + 1}. {step}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+            <div className="m-5 py-3 w-11/12 bg-white rounded-lg shadow-lg">
+              <div className="flex flex-col text-left pl-4">
+                <h2 className="text-lg">ช่องทางการติดต่อ</h2>
+                <ul>
+                  <li>
+                    {" "}
+                    <Link
+                      to={`tel:${item.phone}`}
+                      onClick={handleClick}
+                      className="inline-flex items-center px-3 py-1 bg-white border border-transparent rounded-full shadow-sm text-base font-medium text-gray-700 hover:bg-gray-50"
+                    >
+                      <PhoneIcon className="mr-2" />
+                      <span>{item.phone}</span>
+                    </Link>
                   </li>
-                ))}
-              </ol>
+                  <li>
+                    {" "}
+                    <Link
+                      to={`${item.facebook_link}`}
+                      onClick={handleClick}
+                      className="inline-flex items-center px-3 py-1 bg-white border border-transparent rounded-full shadow-sm text-base font-medium text-gray-700 hover:bg-gray-50"
+                    >
+                      <FacebookIcon className="mr-2" />
+                      <span>{item.facebook_name}</span>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </Box>
           <div className="flex flex-col justify-center m-6 gap-2">
