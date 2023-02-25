@@ -21,11 +21,6 @@ export function Start() {
   const [height, setHeight] = React.useState("");
   const [gender, setGender] = React.useState("");
   const [activities, setActivities] = React.useState("");
-  const [consentAgree, setConsentAgree] = React.useState(true);
-
-  const handleCheck = (event: ChangeEvent) => {
-    setConsentAgree(event.target.checked as boolean);
-  };
 
   const handleGender = (event: SelectChangeEvent) => {
     setGender(event.target.value as string);
@@ -140,7 +135,6 @@ export function Start() {
         <FormControlLabel
           control={
             <Checkbox
-              onChange={handleCheck}
               name="ConsentAgree"
               sx={{
                 color: "#0F044C",
