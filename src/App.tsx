@@ -16,6 +16,7 @@ import { PaymentComplete } from "./modules/Payment/pages/PaymentComplete";
 import { CalMemo } from "./modules/CalMemo";
 import { FitnessBuy } from "./modules/FindFitness/Pages/FitnessBuy";
 import { HistoryCal } from "./modules/CheckIn/pages/History";
+import Challenge from "./modules/Challenge";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/fitness/:id" element={<FitnessDetail />} />
           <Route path="/fitness/buy/:id" element={<FitnessBuy />} />
           <Route path="/fitnessqr" element={<FitnessQR />} />
+          <Route path="/challenge" element={<Challenge />} />
           <Route path="/calmemo" element={<CalMemo />} />
           <Route path="/payment/success" element={<PaymentComplete />} />
           <Route path="*" element={<p>Not Found</p>} />
