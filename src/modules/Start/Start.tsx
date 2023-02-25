@@ -16,13 +16,6 @@ import { api } from "../../common/api";
 import { useNavigate } from "react-router-dom";
 
 export function Start() {
-<<<<<<< HEAD
-  const [age, setAge] = React.useState("");
-  const [weight, setWeight] = React.useState("");
-  const [height, setHeight] = React.useState("");
-  const [gender, setGender] = React.useState("");
-  const [activities, setActivities] = React.useState("");
-=======
   const [age, setAge] = React.useState("18");
   const [weight, setWeight] = React.useState("60");
   const [height, setHeight] = React.useState("165");
@@ -30,12 +23,6 @@ export function Start() {
   const [activities, setActivities] = React.useState(
     "่นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย"
   );
-  const [consentAgree, setConsentAgree] = React.useState(true);
-  
-  const handleCheck = (event: ChangeEvent) => {
-    setConsentAgree(event.target.checked as boolean);
-  }
->>>>>>> f879ca95072df847edee93b1339fe5cc3bd10363
 
   const handleGender = (event: SelectChangeEvent) => {
     setGender(event.target.value as string);
