@@ -38,7 +38,7 @@ export function FitnessDetail() {
       toast.success("แชร์สำเร็จ");
     }
   };
-  console.log(item);
+  
   function handleClick() {
     window.location.href = `tel:${item?.phone}`;
   }
