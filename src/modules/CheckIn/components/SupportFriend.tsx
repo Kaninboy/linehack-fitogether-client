@@ -4,11 +4,10 @@ import toast, { Toaster } from "react-hot-toast";
 import { api } from "../../../common/api";
 
 export const SupportFriend = () => {
-  const [friend, setFriend] = useState<{
-    userId: string;
-    displayName: string;
+  const [group, setGroup] = useState<{
+    guildId: string;
+    groupName: string;
     pictureUrl: string;
-    lastCheckedIn: string;
   } | null>(null);
   const [message, setMessage] = useState("");
   const [loaded, setLoaded] = useState(false);
@@ -16,8 +15,8 @@ export const SupportFriend = () => {
 
   useEffect(() => {
     const load = async () => {
-      const res = await api.get("/engage/friend");
-      setFriend(res.data);
+      const res = await api.get("/engage/group");
+      setGroup(res.data);
       setLoaded(true);
     };
     load();
@@ -27,31 +26,26 @@ export const SupportFriend = () => {
     return (
       <div className="w-full flex rounded-lg animate-pulse bg-slate-200" />
     );
-  if (loaded && !friend) return <div>มาเช็คอินกันเลย!</div>;
-  if (!friend) return null;
+  if (loaded && !group) return <div>มาเช็คอินกันเลย!</div>;
+  if (!group) return null;
   return (
     <div className="w-full">
       <Toaster />
       <div className="p-4 flex gap-4 w-full">
         <div className="pt-1 flex-shrink-0">
           <img
-            src={friend.pictureUrl}
-            alt={friend.displayName}
+            src={group.pictureUrl}
+            alt={group.groupName}
             className="w-12 h-12 rounded-full"
           />
         </div>
         <div className="w-full">
           <div className="flex flex-col justify-center w-full">
             <p className="text-md leading-0">
-              <span className="font-bold">{friend.displayName}</span>{" "}
-              ไม่ได้เช็คอินออกกำลังกายมาตั้งแต่{" "}
-              {new Date(friend.lastCheckedIn).toLocaleDateString("th-TH", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
+              มาชวนเพื่อน ๆ ในกลุ่ม{" "}
+              <span className="font-bold">{group.groupName}</span>{" "}
+              เช็คอินกันเถอะ!
             </p>
-            <p className="text-md leading-0">เชิญมาเช็คอินกันไหม?</p>
             <div className="flex gap-2">
               <TextField
                 size="small"
@@ -66,8 +60,8 @@ export const SupportFriend = () => {
                 aria-label="upload picture"
                 component="label"
                 onClick={async () => {
-                  api.post("/engage/friend", {
-                    friendId: friend.userId,
+                  api.post("/engage/group", {
+                    guildId: group.guildId,
                     message,
                   });
                   toast.success("ส่งข้อความสำเร็จ!");
@@ -108,8 +102,7 @@ export const SupportFriend = () => {
               />
             </svg>
             <p className="text-sm">
-              เราจะส่งข้อความเสียงไปในกลุ่มที่ {friend.displayName}{" "}
-              ร่วมกิจกรรมอยู่!
+              เราจะส่งข้อความเสียงไปในกลุ่ม {group.groupName}!
             </p>
           </div>
         </div>

@@ -52,7 +52,8 @@ export const UserProvider = (props: UserProviderProps) => {
         1650 - diff > 0 ? 1650 - diff : 0
       );
     }
-    init();
+    // init();
+    setIsReady(true);
   }, []);
 
   if (!isReady)

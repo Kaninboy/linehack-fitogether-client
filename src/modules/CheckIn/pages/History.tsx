@@ -1,18 +1,13 @@
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Typography,
-} from "@mui/material";
 import { useEffect, useState } from "react";
-import { api } from "../../common/api";
-import New from "./components/New";
+import { api } from "../../../common/api";
+import { LocationType } from "./SelectLocation";
 
-interface CalMemo {
-  calories: number;
-  datetime: string;
-  imageUrl: string;
-  memo: string;
+interface CheckInData {
+  startDatetime: string;
+  endDatetime: string | null;
+  duration: number | null;
+  locationType: LocationType;
+  location: string;
 }
 
 const days = [0, 1, 2, 3, 4, 5, 6].map((i) =>
@@ -26,28 +21,28 @@ const days = [0, 1, 2, 3, 4, 5, 6].map((i) =>
   )
 );
 
-export const CalMemo = () => {
-  const [data, setData] = useState<Record<string, CalMemo[]>>({});
+export const HistoryCal = () => {
+  const [data, setData] = useState<Record<string, CheckInData[]>>({});
   useEffect(() => {
     const load = async () => {
-      const res = await api.get<{ data: CalMemo[] }>("/calmemo");
+      const res = await api.get<{ data: CheckInData[] }>("/engage/checkin");
       const result = res.data.data.reduce(function (r, a) {
         r[
-          new Date(a.datetime).toLocaleDateString("th-TH", {
+          new Date(a.startDatetime).toLocaleDateString("th-TH", {
             year: "numeric",
             month: "long",
             day: "numeric",
           })
         ] =
           r[
-            new Date(a.datetime).toLocaleDateString("th-TH", {
+            new Date(a.startDatetime).toLocaleDateString("th-TH", {
               year: "numeric",
               month: "long",
               day: "numeric",
             })
           ] || [];
         r[
-          new Date(a.datetime).toLocaleDateString("th-TH", {
+          new Date(a.startDatetime).toLocaleDateString("th-TH", {
             year: "numeric",
             month: "long",
             day: "numeric",
@@ -62,50 +57,30 @@ export const CalMemo = () => {
   }, []);
   return (
     <div>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 4.5v15m7.5-7.5h-15"
-              />
-            </svg>
-          }
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>บันทึกรายการใหม่</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <New />
-        </AccordionDetails>
-      </Accordion>
       <div className="flex flex-col">
         <div className="flex bg-blueDark m-4 rounded-t-lg text-white text-lg p-2 justify-center font-bold">
-          รวมแคลอรี่วันนี้
+          รวมเวลาออกกำลังกายวันนี้
         </div>
         <div className="flex justify-center items-end text-lg">
           <div className="font-bold text-3xl mr-2">
             {new Intl.NumberFormat("th-TH").format(
-              (data[days[0]] || []).reduce((a, b) => a + b.calories, 0)
+              Math.round(
+                (data[days[0]] || []).reduce(
+                  (a, b) => a + (b.duration || 0),
+                  0
+                ) /
+                  1000 /
+                  60
+              )
             )}
           </div>
-          <span className="pt-1 pb-[1px]">กิโลแคลอรี่</span>
+          <span className="pt-1 pb-[1px]">นาที</span>
         </div>
       </div>
 
       <div className="flex flex-col m-4">
         <div className="flex bg-blueDark  rounded-t-lg text-white text-lg p-2 justify-center font-bold">
-          บันทึกแคลอรี่
+          บันทึกการออกกำลังกาย
         </div>
         {days.map((date) => {
           return (
@@ -121,27 +96,24 @@ export const CalMemo = () => {
                   <div className="flex justify-between">
                     <div className="flex-col pl-1 pt-2">
                       <div className="text-sm">
-                        {new Date(item.datetime).toLocaleTimeString("th-TH", {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}{" "}
+                        {new Date(item.startDatetime).toLocaleTimeString(
+                          "th-TH",
+                          {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          }
+                        )}{" "}
                         น.
                       </div>
                       <div className="flex items-end gap-1">
                         <div className="text-2xl font-bold">
-                          {new Intl.NumberFormat("th-TH").format(item.calories)}
+                          {Math.round((item.duration || 0) / 1000 / 60)}
                         </div>
-                        <div className="text-sm pb-[3px]">กิโลแคลอรี่</div>
+                        <div className="text-sm pb-[3px]">นาที</div>
                       </div>
-                      {item.memo && item.memo !== "-" && (
+                      {/* {item.memo && item.memo !== "-" && (
                         <div className="text-sm">{item.memo}</div>
-                      )}
-                    </div>
-                    <div className="overflow-hidden">
-                      <img
-                        className="w-24 h-24 object-cover"
-                        src={item.imageUrl}
-                      />
+                      )} */}
                     </div>
                   </div>
                 ))}

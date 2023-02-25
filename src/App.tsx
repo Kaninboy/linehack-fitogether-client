@@ -19,6 +19,8 @@ import { MyCoach } from "./modules/MyCoach";
 import Courses from "./modules/MyCoach/Pages/CourseDetail";
 import Lesson from "./modules/MyCoach/Pages/Lesson";
 import Study from "./modules/MyCoach/Pages/Study";
+import { HistoryCal } from "./modules/CheckIn/pages/History";
+import Challenge from "./modules/Challenge";
 
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/checkin" element={<CheckIn />} />
+          <Route path="/history" element={<HistoryCal />} />
           <Route path="/start" element={<Start />} />
           <Route path="/card" element={<CardDisplay />} />
           <Route path="/setnoti" element={<TimePickerPage />} />
@@ -36,6 +39,7 @@ function App() {
           <Route path="/fitness/:id" element={<FitnessDetail />} />
           <Route path="/fitness/buy/:id" element={<FitnessBuy />} />
           <Route path="/fitnessqr" element={<FitnessQR />} />
+          <Route path="/challenge" element={<Challenge />} />
           <Route path="/calmemo" element={<CalMemo />} />
           <Route path="/payment/success" element={<PaymentComplete />} />
           <Route path="/mycoach" element={<MyCoach />} /> 

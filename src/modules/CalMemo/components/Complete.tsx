@@ -4,7 +4,7 @@ import animationData from "../../../assets/102058-order-completed.json";
 
 export const Complete = () => {
   return (
-    <div className="w-screen h-screen flex -mt-[56px] flex-col justify-center items-center">
+    <div className="w-full h-screen flex -mt-[56px] flex-col justify-center items-center">
       <Lottie
         options={{
           loop: true,

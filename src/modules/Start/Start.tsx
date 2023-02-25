@@ -16,16 +16,18 @@ import { api } from "../../common/api";
 import { useNavigate } from "react-router-dom";
 
 export function Start() {
-  const [age, setAge] = React.useState("");
-  const [weight, setWeight] = React.useState("");
-  const [height, setHeight] = React.useState("");
-  const [gender, setGender] = React.useState("");
-  const [activities, setActivities] = React.useState("");
+  const [age, setAge] = React.useState("18");
+  const [weight, setWeight] = React.useState("60");
+  const [height, setHeight] = React.useState("165");
+  const [gender, setGender] = React.useState("ชาย");
+  const [activities, setActivities] = React.useState(
+    "่นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย"
+  );
   const [consentAgree, setConsentAgree] = React.useState(true);
-
+  
   const handleCheck = (event: ChangeEvent) => {
     setConsentAgree(event.target.checked as boolean);
-  };
+  }
 
   const handleGender = (event: SelectChangeEvent) => {
     setGender(event.target.value as string);
@@ -80,6 +82,7 @@ export function Start() {
             }}
             variant="outlined"
             onChange={(event) => setAge(event.target.value)}
+            value={age}
           />
         </li>
       </ul>
@@ -93,6 +96,7 @@ export function Start() {
             }}
             variant="outlined"
             onChange={(event) => setWeight(event.target.value)}
+            value={weight}
           />
         </li>
         <li>
@@ -104,6 +108,7 @@ export function Start() {
             }}
             variant="outlined"
             onChange={(event) => setHeight(event.target.value)}
+            value={height}
           />
         </li>
       </ul>
@@ -120,7 +125,10 @@ export function Start() {
               label="กิจกรรมระหว่างวัน"
               onChange={handleActivities}
             >
-              <MenuItem value={"นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย"}>
+              <MenuItem
+                value={"นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย"}
+                selected
+              >
                 นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย
               </MenuItem>
               <MenuItem value={"ออกกำลังกายเบาๆ (1-2 ครั้งต่อสัปดาห์)"}>
