@@ -28,21 +28,21 @@ export const HistoryCal = () => {
       const res = await api.get<{ data: CheckInData[] }>("/engage/checkin");
       const result = res.data.data.reduce(function (r, a) {
         r[
-          new Date(a.startDateTime).toLocaleDateString("th-TH", {
+          new Date(a.startDatetime).toLocaleDateString("th-TH", {
             year: "numeric",
             month: "long",
             day: "numeric",
           })
         ] =
           r[
-            new Date(a.startDateTime).toLocaleDateString("th-TH", {
+            new Date(a.startDatetime).toLocaleDateString("th-TH", {
               year: "numeric",
               month: "long",
               day: "numeric",
             })
           ] || [];
         r[
-          new Date(a.startDateTime).toLocaleDateString("th-TH", {
+          new Date(a.startDatetime).toLocaleDateString("th-TH", {
             year: "numeric",
             month: "long",
             day: "numeric",
@@ -94,7 +94,7 @@ export const HistoryCal = () => {
                   <div className="flex justify-between">
                     <div className="flex-col pl-1 pt-2">
                       <div className="text-sm">
-                        {new Date(item.startDateTime).toLocaleTimeString(
+                        {new Date(item.startDatetime).toLocaleTimeString(
                           "th-TH",
                           {
                             hour: "2-digit",
