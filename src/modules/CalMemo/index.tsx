@@ -15,27 +15,16 @@ interface CalMemo {
   memo: string;
 }
 
-const today = new Date().toLocaleDateString("th-TH", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
-
-const yesterday = new Date(
-  new Date().setDate(new Date().getDate() - 1)
-).toLocaleDateString("th-TH", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
-
-const twoDaysAgo = new Date(
-  new Date().setDate(new Date().getDate() - 2)
-).toLocaleDateString("th-TH", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
+const days = [0, 1, 2, 3, 4, 5, 6].map((i) =>
+  new Date(new Date().setDate(new Date().getDate() - i)).toLocaleDateString(
+    "th-TH",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }
+  )
+);
 
 export const CalMemo = () => {
   const [data, setData] = useState<Record<string, CalMemo[]>>({});
@@ -107,7 +96,7 @@ export const CalMemo = () => {
         <div className="flex justify-center items-end text-lg">
           <div className="font-bold text-3xl mr-2">
             {new Intl.NumberFormat("th-TH").format(
-              (data[today] || []).reduce((a, b) => a + b.calories, 0)
+              (data[days[0]] || []).reduce((a, b) => a + b.calories, 0)
             )}
           </div>
           <span className="pt-1 pb-[1px]">กิโลแคลอรี่</span>
@@ -118,7 +107,7 @@ export const CalMemo = () => {
         <div className="flex bg-blueDark  rounded-t-lg text-white text-lg p-2 justify-center font-bold">
           บันทึกแคลอรี่
         </div>
-        {[today, yesterday, twoDaysAgo].map((date) => {
+        {days.map((date) => {
           return (
             <div>
               <h2 className="text-md font-bold bg-blueDark opacity-80 text-white p-2">
