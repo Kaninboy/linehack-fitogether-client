@@ -3,8 +3,8 @@ import { api } from "../../../common/api";
 import { LocationType } from "./SelectLocation";
 
 interface CheckInData {
-  startDateTime: string;
-  endDateTime: string | null;
+  startDatetime: string;
+  endDatetime: string | null;
   duration: number | null;
   locationType: LocationType;
   location: string;
@@ -78,7 +78,7 @@ export const HistoryCal = () => {
 
       <div className="flex flex-col m-4">
         <div className="flex bg-blueDark  rounded-t-lg text-white text-lg p-2 justify-center font-bold">
-          บันทึกแคลอรี่
+          บันทึกการออกกำลังกาย
         </div>
         {days.map((date) => {
           return (
