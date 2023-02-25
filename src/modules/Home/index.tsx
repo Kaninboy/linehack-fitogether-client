@@ -97,6 +97,11 @@ export function Home() {
     );
   }
 
+  const handleNavigateCard = (card: Item) => {
+    let currentCard = card;
+    navigate("/card", { state: { currentCard } });
+  };
+
   return (
     <div
       className="text-xs bg-cover bg-center text-center font-line bg-greyLight min-h-screen"
@@ -142,6 +147,31 @@ export function Home() {
             </div>
           </div>
         </li>
+      </ul>
+      <ul>
+        <li className="font-bold text-2xl mt-4 text-blueDark">
+          เมนูอาหารแนะนำวันนี้
+        </li>
+
+        <Carousel
+          navButtonsAlwaysVisible
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            mt: 0,
+          }}
+        >
+          {items.map((card) => (
+            <div
+              className="flex m-5 pb-3 h-56"
+              onClick={() => handleNavigateCard(card)}
+            >
+              <FoodCard {...card} />
+            </div>
+          ))}
+        </Carousel>
       </ul>
     </div>
   );
