@@ -15,6 +15,7 @@ import { FitnessDetail } from "./modules/FindFitness/Pages/FitnessDetail";
 import { PaymentComplete } from "./modules/Payment/pages/PaymentComplete";
 import { CalMemo } from "./modules/CalMemo";
 import { FitnessBuy } from "./modules/FindFitness/Pages/FitnessBuy";
+import { FoodList } from "./modules/Home/Pages/FoodList";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <UserProvider>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/food" element={<FoodList />} />
           <Route path="/checkin" element={<CheckIn />} />
           <Route path="/start" element={<Start />} />
           <Route path="/card" element={<CardDisplay />} />
