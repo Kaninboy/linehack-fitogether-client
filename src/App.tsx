@@ -15,6 +15,7 @@ import { FitnessDetail } from "./modules/FindFitness/Pages/FitnessDetail";
 import { PaymentComplete } from "./modules/Payment/pages/PaymentComplete";
 import { CalMemo } from "./modules/CalMemo";
 import { FitnessBuy } from "./modules/FindFitness/Pages/FitnessBuy";
+import { HistoryCal } from "./modules/CheckIn/pages/History";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/checkin" element={<CheckIn />} />
+          <Route path="/history" element={<HistoryCal />} />
           <Route path="/start" element={<Start />} />
           <Route path="/card" element={<CardDisplay />} />
           <Route path="/setnoti" element={<TimePickerPage />} />

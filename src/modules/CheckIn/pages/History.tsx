@@ -21,7 +21,7 @@ const days = [0, 1, 2, 3, 4, 5, 6].map((i) =>
   )
 );
 
-export const CalMemo = () => {
+export const HistoryCal = () => {
   const [data, setData] = useState<Record<string, CheckInData[]>>({});
   useEffect(() => {
     const load = async () => {
