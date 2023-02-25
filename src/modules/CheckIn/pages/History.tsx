@@ -68,7 +68,9 @@ export const HistoryCal = () => {
                 (data[days[0]] || []).reduce(
                   (a, b) => a + (b.duration || 0),
                   0
-                ) / 1000
+                ) /
+                  1000 /
+                  60
               )
             )}
           </div>
@@ -105,7 +107,7 @@ export const HistoryCal = () => {
                       </div>
                       <div className="flex items-end gap-1">
                         <div className="text-2xl font-bold">
-                          {Math.round((item.duration || 0) / 1000)}
+                          {Math.round((item.duration || 0) / 1000 / 60)}
                         </div>
                         <div className="text-sm pb-[3px]">นาที</div>
                       </div>
