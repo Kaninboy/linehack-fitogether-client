@@ -1,8 +1,10 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import {
   Box,
   Button,
+  Checkbox,
   FormControl,
+  FormControlLabel,
   InputAdornment,
   InputLabel,
   MenuItem,
@@ -21,6 +23,11 @@ export function Start() {
   const [activities, setActivities] = React.useState(
     "่นั่งทำงานอยู่กับที่ และไม่ได้ออกกำลังกายเลย"
   );
+  const [consentAgree, setConsentAgree] = React.useState(true);
+  
+  const handleCheck = (event: ChangeEvent) => {
+    setConsentAgree(event.target.checked as boolean);
+  }
 
   const handleGender = (event: SelectChangeEvent) => {
     setGender(event.target.value as string);
@@ -42,7 +49,7 @@ export function Start() {
     });
     navigate("/");
   };
-
+  
   return (
     <div className="font-line">
       <h1 className="text-center text-2xl m-10 font-extrabold">
@@ -137,7 +144,24 @@ export function Start() {
           </FormControl>
         </Box>
       </div>
-      <div className="m-10 text-center color-blueDark">
+      <div className="ml-10 mt-10">
+        <FormControlLabel
+          control={
+            <Checkbox
+              onChange={handleCheck}
+              name="ConsentAgree"
+              sx={{
+                color: "#0F044C",
+                "&.Mui-checked": {
+                  color: "#0F044C",
+                },
+              }}
+            />
+          }
+          label="ยินยอมให้ FITOGETHER ใช้ข้อมูลของคุณ"
+        ></FormControlLabel>
+      </div>
+      <div className="m-10 mt-1 text-center color-blueDark">
         <Button
           variant="contained"
           sx={{ bgcolor: "#0F044C", "&:hover": { backgroundColor: "#0F044C" } }}

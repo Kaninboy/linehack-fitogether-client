@@ -1,4 +1,4 @@
-import { ThemeProvider, Typography } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { theme } from "./common/theme";
@@ -15,6 +15,10 @@ import { FitnessDetail } from "./modules/FindFitness/Pages/FitnessDetail";
 import { PaymentComplete } from "./modules/Payment/pages/PaymentComplete";
 import { CalMemo } from "./modules/CalMemo";
 import { FitnessBuy } from "./modules/FindFitness/Pages/FitnessBuy";
+import { MyCoach } from "./modules/MyCoach";
+import Courses from "./modules/MyCoach/Pages/CourseDetail";
+import Lesson from "./modules/MyCoach/Pages/Lesson";
+import Study from "./modules/MyCoach/Pages/Study";
 import { HistoryCal } from "./modules/CheckIn/pages/History";
 import Challenge from "./modules/Challenge";
 
@@ -38,6 +42,10 @@ function App() {
           <Route path="/challenge" element={<Challenge />} />
           <Route path="/calmemo" element={<CalMemo />} />
           <Route path="/payment/success" element={<PaymentComplete />} />
+          <Route path="/mycoach" element={<MyCoach />} /> 
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/lesson" element={<Lesson />} />
+          <Route path="/study" element={<Study  />} />
           <Route path="*" element={<p>Not Found</p>} />
         </Routes>
       </UserProvider>
