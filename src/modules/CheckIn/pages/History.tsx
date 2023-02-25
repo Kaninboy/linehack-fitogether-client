@@ -25,7 +25,7 @@ export const HistoryCal = () => {
   const [data, setData] = useState<Record<string, CheckInData[]>>({});
   useEffect(() => {
     const load = async () => {
-      const res = await api.get<{ data: CheckInData[] }>("/checkin");
+      const res = await api.get<{ data: CheckInData[] }>("/engage/checkin");
       const result = res.data.data.reduce(function (r, a) {
         r[
           new Date(a.startDateTime).toLocaleDateString("th-TH", {
