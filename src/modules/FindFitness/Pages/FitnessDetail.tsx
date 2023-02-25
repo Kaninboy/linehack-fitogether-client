@@ -113,10 +113,24 @@ export function FitnessDetail() {
                 <h2 className="text-lg font-bold">ค่าบริการ</h2>
                 <ol>
                   <li className="mr-4">
-                    เดือนละ{" "}
+                    รายวัน{" "}
                     {new Intl.NumberFormat("th-TH", {
                       currency: "THB",
-                    }).format(parseInt(item.monthlyfee, 10))}{" "}
+                    }).format(item.dailyfee)}{" "}
+                    บาท
+                  </li>
+                  <li className="mr-4">
+                    รายเดือน{" "}
+                    {new Intl.NumberFormat("th-TH", {
+                      currency: "THB",
+                    }).format(item.monthlyfee)}{" "}
+                    บาท
+                  </li>
+                  <li className="mr-4">
+                    รายปี{" "}
+                    {new Intl.NumberFormat("th-TH", {
+                      currency: "THB",
+                    }).format(item.yearlyfee)}{" "}
                     บาท
                   </li>
                 </ol>

@@ -1,5 +1,13 @@
 import { ArrowBack } from "@mui/icons-material";
-import { Box, IconButton } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  IconButton,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { api } from "../../../common/api";
@@ -11,6 +19,7 @@ export function FitnessBuy() {
   const isPaymentReserveOngoing = useRef(false);
   const [loading, setLoading] = useState(true);
   const [item, setItem] = useState<Fitness | null>(null);
+  const [plan, setPlan] = useState("daily");
 
   useEffect(() => {
     const loadFitness = async () => {
@@ -28,6 +37,7 @@ export function FitnessBuy() {
 
     const res = await api.post("/payment/reserve", {
       fitnessId: item.id,
+      type: plan,
     });
     if (!res.data.url) {
       alert("ไม่สามารถทำรายการได้");
@@ -41,12 +51,58 @@ export function FitnessBuy() {
 
   if (loading) return null;
   return (
-    <div className="flex flex-col text-xs">
+    <div className="flex flex-col text-xs ">
       <div className="flex items-center">
         <IconButton onClick={() => navigate(`/fitness/${id}`)}>
           <ArrowBack />
         </IconButton>
         <p>กลับไปดูรายละเอียดเพิ่มเติม</p>
+      </div>
+
+      <div className="m-4">
+        <h1 className="text-xl mb-4 font-bold">{item?.name}</h1>
+        <FormControl>
+          <FormLabel id="demo-radio-buttons-group-label">เลือกแผน</FormLabel>
+          <RadioGroup
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue="female"
+            name="radio-buttons-group"
+            onChange={(e) => {
+              setPlan(e.target.value);
+            }}
+          >
+            {item?.dailyfee && (
+              <FormControlLabel
+                value="daily"
+                control={<Radio />}
+                label={`แบบรายวัน (ราคา ${new Intl.NumberFormat("th-TH").format(
+                  item?.dailyfee || 0
+                )} บาท)`}
+                checked={plan === "daily"}
+              />
+            )}
+            {item?.monthlyfee && (
+              <FormControlLabel
+                value="monthly"
+                control={<Radio />}
+                label={`แบบรายเดือน (ราคา ${new Intl.NumberFormat(
+                  "th-TH"
+                ).format(item?.monthlyfee || 0)} บาท)`}
+                checked={plan === "monthly"}
+              />
+            )}
+            {item?.yearlyfee && (
+              <FormControlLabel
+                value="yearly"
+                control={<Radio />}
+                label={`แบบรายปี (ราคา ${new Intl.NumberFormat("th-TH").format(
+                  item?.yearlyfee || 0
+                )} บาท)`}
+                checked={plan === "yearly"}
+              />
+            )}
+          </RadioGroup>
+        </FormControl>
       </div>
 
       <button
