@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { PageStage } from "..";
 import { SelectMap } from "../components/SelectMap";
 
@@ -23,6 +24,7 @@ interface SelectLocationProps {
 export const SelectLocation = (props: SelectLocationProps) => {
   const { location, setLocation, setPageStage } = props;
   const [showMap, setShowMap] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -158,16 +160,26 @@ export const SelectLocation = (props: SelectLocationProps) => {
             : "เลือกบนแผนที่..."}
         </Button>
       </div>
-      <Button
-        variant="contained"
-        size="large"
-        onClick={() => {
-          setPageStage(PageStage.CONFIRM);
-        }}
-        fullWidth
-      >
-        {location.type === LocationType.UNKNOWN ? "ข้าม" : "ถัดไป"}
-      </Button>
+      <div className="flex flex-col gap-1 my-1">
+        <Button
+          variant="text"
+          size="medium"
+          onClick={() => navigate("/history")}
+          fullWidth
+        >
+          ดูประวัติการเช็คอิน
+        </Button>
+        <Button
+          variant="contained"
+          size="large"
+          onClick={() => {
+            setPageStage(PageStage.CONFIRM);
+          }}
+          fullWidth
+        >
+          {location.type === LocationType.UNKNOWN ? "ข้าม" : "ถัดไป"}
+        </Button>
+      </div>
     </>
   );
 };

@@ -62,7 +62,9 @@ export function FitnessBuy() {
       <div className="m-4">
         <h1 className="text-xl mb-4 font-bold">{item?.name}</h1>
         <FormControl>
-          <FormLabel id="demo-radio-buttons-group-label">เลือกแผน</FormLabel>
+          <FormLabel id="demo-radio-buttons-group-label">
+            เลือกประเภทสมาชิก
+          </FormLabel>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
             defaultValue="female"

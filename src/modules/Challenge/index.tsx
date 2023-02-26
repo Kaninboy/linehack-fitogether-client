@@ -1,3 +1,6 @@
+import liff from "@line/liff/dist/lib";
+import { Button } from "@mui/material";
+
 const Challenge = () => {
   return (
     <div className="m-4">
@@ -18,6 +21,9 @@ const Challenge = () => {
         </svg>
         <span className="text-blueDark">MyChallenge</span>
       </h1>
+      <Button variant="contained" fullWidth sx={{ marginY: 2 }}>
+        ตั้งเป้าหมาย
+      </Button>
       <div className="flex flex-col m-4 mt-6">
         <div className="flex gap-4">
           <div className="h-11 w-11 bg-green-700 flex justify-center items-center rounded-full">
@@ -38,24 +44,32 @@ const Challenge = () => {
           </div>
           <div className="flex flex-col">
             <p className="flex font-bold text-md text-green-700 ">
-              ออกกำลังกายครบ 60 นาที ในวันนี้
+              ออกกำลังกายครบ 60 นาที ตามเป้าหมาย
             </p>
             <div className="flex justify-between items-center">
               <p className="text-sm text-green-700">ปลดล็อกแล้ว !</p>
-              {/* <svg
+              <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
                 className="w-4 h-4"
+                onClick={() =>
+                  liff.shareTargetPicker([
+                    {
+                      type: "text",
+                      text: `ฉันทำชาเลนจ์ ออกกำลังกายครบ 60 นาที ตามเป้าหมาย เรียบร้อยแล้ว !`,
+                    },
+                  ])
+                }
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"
                 />
-              </svg> */}
+              </svg>
             </div>
           </div>
         </div>
@@ -80,24 +94,32 @@ const Challenge = () => {
           </div>
           <div className="flex flex-col">
             <p className="font-bold text-md text-yellow-700">
-              ทานอาหารไม่เกิน 800 กิโลแคลอรี่
+              ทานอาหารไม่เกิน 800 กิโลแคลอรี่ตามเป้าหมาย
             </p>
             <div className="flex justify-between items-center">
               <p className="text-sm text-yellow-700">ปลดล็อกแล้ว !</p>
-              {/* <svg
+              <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
                 className="w-4 h-4"
+                onClick={() =>
+                  liff.shareTargetPicker([
+                    {
+                      type: "text",
+                      text: `ฉันทำชาเลนจ์ ทานอาหารไม่เกิน 800 กิโลแคลอรี่ตามเป้าหมาย เรียบร้อยแล้ว !`,
+                    },
+                  ])
+                }
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"
                 />
-              </svg> */}
+              </svg>
             </div>
           </div>
         </div>

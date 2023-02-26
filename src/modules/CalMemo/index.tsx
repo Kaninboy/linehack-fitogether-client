@@ -120,13 +120,13 @@ export const CalMemo = () => {
                 .map((item) => (
                   <div className="flex justify-between">
                     <div className="flex-col pl-1 pt-2">
-                      <div className="text-sm">
+                      {/* <div className="text-sm">
                         {new Date(item.datetime).toLocaleTimeString("th-TH", {
                           hour: "2-digit",
                           minute: "2-digit",
                         })}{" "}
                         น.
-                      </div>
+                      </div> */}
                       <div className="flex items-end gap-1">
                         <div className="text-2xl font-bold">
                           {new Intl.NumberFormat("th-TH").format(item.calories)}

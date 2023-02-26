@@ -30,15 +30,15 @@ export default function Lesson() {
   return (
     <div
       className="font-line text-xs bg-greyMain min-h-screen"
-    //   style={{
-    //     backgroundImage: `url(https://storage.googleapis.com/fitogether-me/assistanceFood/dumbbell_bg.jpg)`,
-    //     backgroundPosition: "center",
-    //     backgroundSize: "cover",
-    //   }}
+      //   style={{
+      //     backgroundImage: `url(https://storage.googleapis.com/fitogether-me/assistanceFood/dumbbell_bg.jpg)`,
+      //     backgroundPosition: "center",
+      //     backgroundSize: "cover",
+      //   }}
     >
       <div className="flex flex-col gap-2">
         <div className="flex items-center">
-          <IconButton onClick={() => navigate("/mycoach")}>
+          <IconButton onClick={() => navigate("/courses")}>
             <ArrowBack htmlColor="black" />
           </IconButton>
           <p>กลับไปหน้าคอร์สทั้งหมดของ Fitjunction</p>
