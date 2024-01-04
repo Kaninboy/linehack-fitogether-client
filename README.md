@@ -21,7 +21,7 @@ to start the development server, run:
 pnpm dev
 ```
 ## Preview
-![Get Started Page](https://ibb.co/cwPhdGr/2.jpg)
-![Calories Page](https://ibb.co/RSNXpsY/3.jpg)
-![Workout Page](https://ibb.co/GkPZpf5/4.jpg)
-![Checkin Page](https://ibb.co/vwkg2gs/5.jpg)
+![Get Started Page](https://i.ibb.co/vhb487j/2.jpg)
+![Calories Page](https://i.ibb.co/z5F3hBQ/3.jpg)
+![Workout Page](https://i.ibb.co/MpNzSyC/4.jpg)
+![Checkin Page](https://i.ibb.co/0Dr8P8B/5.jpg)
